@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0b4b9f" />
     <title>CoolBe WorksHub+｜企業營運中樞</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%232fd2b6'/%3E%3Cstop offset='1' stop-color='%232f8fe8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='url(%23g)' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M22 24h14v14H22z' fill='%231d4f86'/%3E%3Cpath d='M28 30h14v14H28z' fill='%233b91df'/%3E%3Cpath d='M44 13v12M38 19h12' stroke='%232fd2b6' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=20260924-figma" />
+  <link rel="stylesheet" href="styles.css?v=20260930-message-padding8" />
 </head>
   <body>
     <a class="skip-link" href="#main">跳到主要內容</a>
@@ -26,15 +26,17 @@
             </div>
           </div>
 
-          <div class="hero-showcase reveal" aria-label="WorksHub+ 後台與 LINE WORKS 手機介面示意">
-            <img class="hero-admin-image" src="assets/figma-5219c.png" alt="WorksHub+ 成員管理後台畫面" />
-            <img class="hero-mobile-image" src="assets/figma-2b4ed.png" alt="LINE WORKS 手機訊息畫面" />
-            <div class="showcase-logo brand-crop"><img src="assets/figma-c4fd8.png" alt="" /></div>
-            <div class="scene-badge scene-office"><img src="assets/figma-7d145.png" alt="" />辦公室</div>
-            <div class="scene-badge scene-store"><img src="assets/figma-6f265.png" alt="" />門市</div>
-            <div class="scene-badge scene-warehouse"><img src="assets/figma-5c17d.png" alt="" />倉庫</div>
-            <div class="scene-badge scene-field"><i></i>外勤</div>
-            <div class="float-chip float-chat"><img src="assets/figma-3a741.png" alt="" />即時觸達</div>
+          <div class="hero-showcase" aria-label="WorksHub+ 後台與 LINE WORKS 手機介面示意">
+            <div class="hero-media-layer hero-web-layer"><img class="hero-admin-image" src="assets/figma-5219c.png" alt="WorksHub+ 成員管理後台畫面" /></div>
+            <div class="hero-media-layer hero-phone-layer"><img class="hero-mobile-image" src="assets/figma-2b4ed.png" alt="LINE WORKS 手機訊息畫面" /></div>
+            <div class="hero-detail-layer">
+              <div class="showcase-logo brand-crop"><img src="assets/figma-c4fd8.png" alt="" /></div>
+              <div class="scene-badge scene-office"><img src="assets/figma-7d145.png" alt="" />辦公室</div>
+              <div class="scene-badge scene-store"><img src="assets/figma-6f265.png" alt="" />門市</div>
+              <div class="scene-badge scene-warehouse"><img src="assets/figma-5c17d.png" alt="" />倉庫</div>
+              <div class="scene-badge scene-field"><i></i>外勤</div>
+              <div class="float-chip float-chat"><img src="assets/figma-3a741.png" alt="" />即時觸達</div>
+            </div>
           </div>
         </div>
       </section>
@@ -44,11 +46,33 @@
           <div class="friction-board reveal">
             <div class="board-kicker">辦公室的一項作業</div>
             <h3>四個入口，四個斷點</h3>
-            <div class="tool-grid">
-              <div><img src="assets/figma-945f2.png" alt="" /><span>溝通零散</span></div>
-              <div><img src="assets/figma-859e3.png" alt="" /><span>簽呈凌亂</span></div>
-              <div><img src="assets/figma-cb415.png" alt="" /><span>班別不一</span></div>
-              <div><img src="assets/figma-92d85.png" alt="" /><span>資產分散</span></div>
+            <div class="friction-carousel" data-friction-carousel aria-roledescription="輪播" aria-label="四個入口，四個斷點">
+              <div class="friction-viewport">
+                <div class="friction-track">
+                  <article class="friction-slide" role="group" aria-roledescription="投影片" aria-label="1 / 4">
+                    <span class="breakpoint-tag">斷點 1</span>
+                    <div class="friction-slide-content"><img src="assets/figma-945f2.png" alt="" draggable="false" /><h4>溝通零散</h4><p>訊息散落於各種通訊軟體與信件，導致資訊傳遞斷層、搜尋耗時且容易遺漏重要細節。</p></div>
+                  </article>
+                  <article class="friction-slide" role="group" aria-roledescription="投影片" aria-label="2 / 4">
+                    <span class="breakpoint-tag">斷點 2</span>
+                    <div class="friction-slide-content"><img src="assets/figma-859e3.png" alt="" draggable="false" /><h4>簽呈凌亂</h4><p>流程缺乏統一規範，紙本與線上表單交錯，進度難以追蹤，嚴重拖慢審核與決策效率。</p></div>
+                  </article>
+                  <article class="friction-slide" role="group" aria-roledescription="投影片" aria-label="3 / 4">
+                    <span class="breakpoint-tag">斷點 3</span>
+                    <div class="friction-slide-content"><img src="assets/figma-cb415.png" alt="" draggable="false" /><h4>班別不一</h4><p>多元班別與排班制度複雜，出勤紀錄難以即時掌握，增加考勤統計與管理上的困擾。</p></div>
+                  </article>
+                  <article class="friction-slide" role="group" aria-roledescription="投影片" aria-label="4 / 4">
+                    <span class="breakpoint-tag">斷點 4</span>
+                    <div class="friction-slide-content"><img src="assets/figma-92d85.png" alt="" draggable="false" /><h4>資產分散</h4><p>設備與軟體權限紀錄不齊全，資產流向無法透明管控，提升了維護與資安交接的風險。</p></div>
+                  </article>
+                </div>
+              </div>
+              <div class="friction-dots" aria-label="選擇斷點">
+                <button type="button" data-carousel-dot="0" aria-label="顯示斷點 1" aria-current="true"></button>
+                <button type="button" data-carousel-dot="1" aria-label="顯示斷點 2" aria-current="false"></button>
+                <button type="button" data-carousel-dot="2" aria-label="顯示斷點 3" aria-current="false"></button>
+                <button type="button" data-carousel-dot="3" aria-label="顯示斷點 4" aria-current="false"></button>
+              </div>
             </div>
           </div>
 
@@ -72,17 +96,17 @@
             <p>把分散的資料與流程，轉化為員工可以直接採取的行動。</p>
           </div>
           <div class="value-cards">
-            <article class="value-card reveal">
+            <article class="value-card motion-card reveal" tabindex="0">
               <div class="value-top"><span class="card-number">01</span><img class="value-icon" src="assets/figma-0c773.png" alt="" /></div>
               <h3>低門檻企業管理</h3>
               <p>HR／IT 不需等待工程資源，也能自主維護<br />組織、成員與日常權限。</p>
             </article>
-            <article class="value-card reveal">
+            <article class="value-card motion-card reveal" tabindex="0">
               <div class="value-top"><span class="card-number">02</span><img class="value-icon" src="assets/figma-001c5.png" alt="" /></div>
               <h3>Bot 建構企業工作流</h3>
               <p>自動化設定管理，讓員工輕鬆收到<br />與完成工作任務。</p>
             </article>
-            <article class="value-card reveal">
+            <article class="value-card motion-card reveal" tabindex="0">
               <div class="value-top"><span class="card-number">03</span><img class="value-icon" src="assets/figma-ae1e3.png" alt="" /></div>
               <h3>企業系統整合</h3>
               <p>串接 ERP、CRM、HRM，<br />在正確時機把資料送給正確的人。</p>
@@ -93,26 +117,26 @@
 
       <section class="section how-it-works">
         <div class="container">
-          <div class="section-heading centered on-dark reveal">
+          <div class="section-heading centered on-dark flow-heading staged-reveal">
             <div class="eyebrow"><span></span>HOW IT WORKS</div>
             <h2>不管坐辦公室，還是在第一線，重要的事都不會漏接</h2>
             <p>WorksHub+ 不取代原有系統，協助企業把資料與服務整合到 LINE WORKS。</p>
           </div>
 
-          <div class="flow-stage reveal" aria-label="WorksHub+ 運作流程圖">
+          <div class="flow-stage flow-sequence staged-reveal" aria-label="WorksHub+ 運作流程圖">
             <div class="flow-column flow-source">
               <span class="flow-label">公司裡發生的事</span>
               <div class="source-grid">
-                <div><i>庫</i>庫存不足</div>
-                <div><i>修</i>設備保養</div>
-                <div><i>單</i>訂單異常</div>
-                <div><i>工</i>新工單</div>
-                <div><i>假</i>請假申請</div>
-                <div><i>告</i>公司公告</div>
+                <article class="flow-card" tabindex="0"><img src="assets/flow-source-inventory.svg" alt="" /><span><strong>庫存不足</strong><small>倉庫庫存不足，需要提示相關人員補貨</small></span></article>
+                <article class="flow-card" tabindex="0"><img src="assets/flow-source-equipment.svg" alt="" /><span><strong>設備保養</strong><small>設備需定期保養，自動通知相關人員維護。</small></span></article>
+                <article class="flow-card" tabindex="0"><img src="assets/flow-source-order.svg" alt="" /><span><strong>訂單異常</strong><small>發現異常自動通報</small></span></article>
+                <article class="flow-card" tabindex="0"><img src="assets/flow-source-work.svg" alt="" /><span><strong>新工單</strong><small>新任務一鍵派送</small></span></article>
+                <article class="flow-card" tabindex="0"><img src="assets/flow-source-leave.svg" alt="" /><span><strong>請假申請</strong><small>職員透過線上申請假單或打卡</small></span></article>
+                <article class="flow-card" tabindex="0"><img src="assets/flow-source-announcement.svg" alt="" /><span><strong>公司公告</strong><small>快速通報給所有職員</small></span></article>
               </div>
             </div>
             <div class="flow-arrow" aria-hidden="true"><span></span></div>
-            <div class="flow-core">
+            <div class="flow-core flow-card" tabindex="0">
               <img src="assets/figma-edcbf.png" alt="WorksHub+" />
               <div>自動判斷該通知誰、送給誰</div>
             </div>
@@ -120,19 +144,20 @@
             <div class="flow-destination">
               <span class="flow-label">LINE WORKS</span>
               <div class="people-grid">
-                <div><i>店</i>門市</div>
-                <div><i>產</i>產線</div>
-                <div><i>業</i>業務</div>
-                <div><i>外</i>外勤</div>
-                <div><i>管</i>主管</div>
+                <article class="flow-card" tabindex="0" aria-label="門市，通知：倉庫需補貨"><span class="role-message message-blue" aria-hidden="true">通知：倉庫需補貨</span><img src="assets/flow-person-store.svg" alt="" /><strong>門市</strong></article>
+                <article class="flow-card" tabindex="0" aria-label="產線，通知：設備需保養"><span class="role-message message-mint" aria-hidden="true">通知：設備需保養</span><img src="assets/flow-person-production.svg" alt="" /><strong>產線</strong></article>
+                <article class="flow-card" tabindex="0" aria-label="業務，已發送新工單給工程"><span class="role-message message-mint" aria-hidden="true">已發送新工單給工程</span><img src="assets/flow-person-sales.svg" alt="" /><strong>業務</strong></article>
+                <article class="flow-card" tabindex="0" aria-label="外勤，訂單異常通知"><span class="role-message message-blue" aria-hidden="true">訂單異常通知</span><img src="assets/flow-person-field.svg" alt="" /><strong>外勤</strong></article>
+                <article class="flow-card" tabindex="0" aria-label="主管，收到一則請假申請"><span class="role-message message-blue" aria-hidden="true">收到一則請假申請</span><img src="assets/flow-person-manager.svg" alt="" /><strong>主管</strong></article>
+                <article class="flow-card" tabindex="0" aria-label="人資，公司公告已發送"><span class="role-message message-mint" aria-hidden="true">公司公告已發送</span><img src="assets/flow-person-hr.svg" alt="" /><strong>人資</strong></article>
               </div>
             </div>
           </div>
 
-          <div class="flow-captions">
+          <div class="flow-captions staged-reveal">
             <div><strong>01・公司裡發生的事</strong><span>庫存不足・設備保養・訂單異常・新工單・請假申請・公司公告</span></div>
             <div><strong>02・WorksHub+</strong><span>自動判斷該通知誰、送給誰</span></div>
-            <div><strong>03・不分辦公室或第一線</strong><span>門市・產線・業務・外勤・主管，都在 LINE WORKS 收到並處理</span></div>
+            <div><strong>03・不分辦公室或第一線</strong><span>門市・產線・業務・外勤・主管・人資，都在 LINE WORKS 收到並處理</span></div>
           </div>
         </div>
       </section>
@@ -145,19 +170,19 @@
             <p>建構企業治理、服務、整合與洞察的營運能力。</p>
           </div>
           <div class="capability-grid">
-            <article class="capability-card reveal">
+            <article class="capability-card motion-card reveal" tabindex="0">
               <div class="cap-head"><span class="cap-icon"><img src="assets/figma-39eca.svg" alt="" /></span><div><small>GOVERNANCE</small><h3>組織治理</h3></div></div>
               <p>多層級組織、成員生命週期與角色權限集中維護，<br />管理範圍依職責自動對齊，異動即時生效。</p>
             </article>
-            <article class="capability-card reveal">
+            <article class="capability-card motion-card reveal" tabindex="0">
               <div class="cap-head"><span class="cap-icon"><img src="assets/figma-b638e.svg" alt="" /></span><div><small>BOT SERVICES</small><h3>Bot 應用服務</h3></div></div>
               <p>透過 Bot 市集，將出勤、簽核與內部服務轉化為<br />員工在 LINE WORKS Bot 即可完成的作業，無需另建 App。</p>
             </article>
-            <article class="capability-card reveal">
+            <article class="capability-card motion-card reveal" tabindex="0">
               <div class="cap-head"><span class="cap-icon"><img src="assets/figma-04f68.svg" alt="" /></span><div><small>INTEGRATION HUB</small><h3>系統整合</h3></div></div>
               <p>以連接器市集串接 ERP、CRM、HRM，依資料變動與<br />業務規則自動觸發推播與流程，整合一次、多處復用。</p>
             </article>
-            <article class="capability-card reveal">
+            <article class="capability-card motion-card reveal" tabindex="0">
               <div class="cap-head"><span class="cap-icon"><img src="assets/figma-c56f0.svg" alt="" /></span><div><small>INSIGHT &amp; AUDIT</small><h3>洞察與稽核</h3></div></div>
               <p>推播、訊息與選單的使用情形一目了然；每一項操作<br />皆留有人員、時間、IP 與異動軌跡，隨時可追溯。</p>
             </article>
@@ -236,9 +261,9 @@
             <p>登入、資料區隔與操作軌跡都有具體的管理依據。</p>
           </div>
           <div class="security-cards">
-            <article class="reveal"><img class="security-icon" src="assets/figma-86317.svg" alt="" /><h3>LINE WORKS 單一登入</h3><p>沿用既有 LINE WORKS 帳號登入，免除第二套<br />帳號密碼的維護成本與資安風險。</p></article>
-            <article class="reveal"><img class="security-icon security-icon-crop" src="assets/figma-136bf.png" alt="" /><h3>企業資料隔離</h3><p>每一企業擁有獨立驗證憑證，以 Tenant 機制<br />確保資料邊界清晰、互不干擾。</p></article>
-            <article class="reveal"><img class="security-icon security-icon-crop" src="assets/figma-7cbc1.png" alt="" /><h3>完整操作稽核</h3><p>操作者、時間、IP 與異動內容完整留存，<br />方便追溯查核。</p></article>
+            <article class="motion-card reveal" tabindex="0"><img class="security-icon" src="assets/figma-86317.svg" alt="" /><h3>LINE WORKS 單一登入</h3><p>沿用既有 LINE WORKS 帳號登入，免除第二套<br />帳號密碼的維護成本與資安風險。</p></article>
+            <article class="motion-card reveal" tabindex="0"><img class="security-icon security-icon-crop" src="assets/figma-136bf.png" alt="" /><h3>企業資料隔離</h3><p>每一企業擁有獨立驗證憑證，以 Tenant 機制<br />確保資料邊界清晰、互不干擾。</p></article>
+            <article class="motion-card reveal" tabindex="0"><img class="security-icon security-icon-crop" src="assets/figma-7cbc1.png" alt="" /><h3>完整操作稽核</h3><p>操作者、時間、IP 與異動內容完整留存，<br />方便追溯查核。</p></article>
           </div>
         </div>
       </section>
@@ -298,6 +323,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260924-figma"></script>
+    <script src="script.js?v=20260930-motion"></script>
   </body>
 </html>
