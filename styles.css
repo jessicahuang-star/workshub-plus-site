@@ -360,7 +360,8 @@ h1, h2, h3, h4 { line-height: 1.22; }
 .journey-grid article > span { position: absolute; right: 20px; top: 18px; color: var(--blue); font-size: 12px; font-weight: 900; }
 .journey-grid h4 { margin: 20px 0 6px; font-size: 20px; line-height: 23.18px; }
 .journey-grid p { margin: 0; color: var(--muted); font-size: 14px; line-height: 19.8px; }
-.journey-arrow { color: #9cabbd; font-size: 28px; text-align: center; }
+.journey-arrow { display: flex; align-items: center; justify-content: center; min-height: 46px; color: #9cadc1; }
+.journey-arrow svg { display: block; flex: 0 0 24px; width: 24px; height: 24px; }
 .journey-visual { height: 105px; display: flex; align-items: center; justify-content: center; border-radius: 13px; background: var(--surface); }
 .menu-visual { display: grid; grid-template-columns: repeat(2, 48px); gap: 8px; }
 .menu-visual i { height: 36px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
@@ -487,7 +488,7 @@ h1, h2, h3, h4 { line-height: 1.22; }
   .automation-visual { width: min(100%, 620px); margin: 0 auto; }
   .marketplace .section-heading { max-width: 760px; }
   .journey-grid { grid-template-columns: 1fr; gap: 12px; }
-  .journey-arrow { transform: rotate(90deg); }
+  .journey-arrow svg { transform: rotate(90deg); }
   .journey-grid article { min-height: 230px; }
   .admin-strip { align-items: stretch; flex-direction: column; }
   .mini-table { width: 100%; }
@@ -942,4 +943,39 @@ h1, h2, h3, h4 { line-height: 1.22; }
   .motion-card.reveal.visible:focus-visible,
   .flow-sequence.visible .flow-card:hover,
   .flow-sequence.visible .flow-card:focus-visible { transform: none; }
+}
+
+/* Mobile layout sync from Figma mobile frame (125:110), 2026-10-01. */
+.mobile-break { display: none; }
+@media (max-width: 640px) {
+  .mobile-break { display: inline; }
+  .mobile-hide { display: none; }
+
+  /* Centered section headings */
+  .section-heading.centered,
+  .marketplace .section-heading,
+  .section-copy > h2,
+  .section-copy > p,
+  .faq-block h2 { text-align: center; }
+  .section-heading.centered .eyebrow,
+  .marketplace .section-heading .eyebrow,
+  .section-copy > .eyebrow,
+  .faq-block .eyebrow { justify-content: center; }
+
+  /* Section spacing */
+  .friction, .value-section, .how-it-works { padding: 80px 0; }
+  .automation { padding: 76px 0 80px; }
+
+  /* Friction: copy first, then centered board; slide fits the viewport */
+  .friction .section-copy { order: -1; }
+  .board-kicker, .friction-board h3 { text-align: center; }
+  .friction-slide { min-width: 0; padding-inline: 10px; }
+
+  /* How it works: compact core card */
+  .flow-core { min-height: 0; padding: 16px 18px; }
+  .flow-core > img { width: 188px; height: 95px; margin: 15px auto -5px; }
+
+  /* Automation: full phone shot with a smaller connector card */
+  .automation-phone-shot { top: -28px; left: 7px; width: 357px; }
+  .connector-card { zoom: .79; top: 333px; right: auto; left: 143px; }
 }
