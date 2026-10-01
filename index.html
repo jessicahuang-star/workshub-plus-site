@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0b4b9f" />
     <title>CoolBe WorksHub+｜企業營運中樞</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%232fd2b6'/%3E%3Cstop offset='1' stop-color='%232f8fe8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='url(%23g)' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M22 24h14v14H22z' fill='%231d4f86'/%3E%3Cpath d='M28 30h14v14H28z' fill='%233b91df'/%3E%3Cpath d='M44 13v12M38 19h12' stroke='%232fd2b6' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=20260930-message-padding8" />
+  <link rel="stylesheet" href="styles.css?v=20260930-spacing-align-sync" />
 </head>
   <body>
     <a class="skip-link" href="#main">跳到主要內容</a>
@@ -17,12 +17,12 @@
         <div class="hero-orb hero-orb-a"></div>
         <div class="hero-orb hero-orb-b"></div>
         <div class="container hero-grid">
-          <div class="hero-copy reveal">
+          <div class="hero-copy">
             <div class="brand-crop"><img src="assets/figma-c4fd8.png" alt="WorksHub+" /></div>
             <h1>讓 LINE WORKS<br /><em>佈達企業全場景</em></h1>
             <p class="lead">WorksHub+ 整合辦公室、門市、倉庫、外勤全場景，<br class="desktop-break" />幫助企業建立自動化持續運轉的營運中樞。</p>
             <div class="hero-actions">
-              <a class="button" href="#demo">預約產品 Demo <span aria-hidden="true">→</span></a>
+              <a class="button" href="#demo">預約產品 Demo</a>
             </div>
           </div>
 
@@ -41,12 +41,12 @@
         </div>
       </section>
 
-      <section class="section friction" id="value">
+      <section class="section friction timed-sequence" id="value">
         <div class="container split-grid">
-          <div class="friction-board reveal">
+          <div class="friction-board sequence-visual">
             <div class="board-kicker">辦公室的一項作業</div>
-            <h3>四個入口，四個斷點</h3>
-            <div class="friction-carousel" data-friction-carousel aria-roledescription="輪播" aria-label="四個入口，四個斷點">
+            <h3>四個入口&amp;四個斷點</h3>
+            <div class="friction-carousel" data-friction-carousel aria-roledescription="輪播" aria-label="四個入口與四個斷點">
               <div class="friction-viewport">
                 <div class="friction-track">
                   <article class="friction-slide" role="group" aria-roledescription="投影片" aria-label="1 / 4">
@@ -76,9 +76,9 @@
             </div>
           </div>
 
-          <div class="section-copy reveal">
+          <div class="section-copy sequence-copy">
             <div class="eyebrow"><span></span>THE FRICTION</div>
-            <h2>企業資源多元，<br />工作流程卻難以整合</h2>
+            <h2>企業資源多元<br />工作流程卻難以整合</h2>
             <ol class="number-list">
               <li><span>01</span><div><h3>企業流程散落在不同系統</h3><p>通知、簽核、打卡與任務散落在不同工具。</p></div></li>
               <li><span>02</span><div><h3>企業資產分散</h3><p>ERP、CRM、企業系統各自運作，資訊入口不一。</p></div></li>
@@ -120,44 +120,47 @@
           <div class="section-heading centered on-dark flow-heading staged-reveal">
             <div class="eyebrow"><span></span>HOW IT WORKS</div>
             <h2>不管坐辦公室，還是在第一線，重要的事都不會漏接</h2>
-            <p>WorksHub+ 不取代原有系統，協助企業把資料與服務整合到 LINE WORKS。</p>
+            <p>WorksHub+ 不取代原有系統，協助企業把資料與服務整合到 LINE WORKS</p>
           </div>
 
           <div class="flow-stage flow-sequence staged-reveal" aria-label="WorksHub+ 運作流程圖">
-            <div class="flow-column flow-source">
-              <span class="flow-label">公司裡發生的事</span>
-              <div class="source-grid">
-                <article class="flow-card" tabindex="0"><img src="assets/flow-source-inventory.svg" alt="" /><span><strong>庫存不足</strong><small>倉庫庫存不足，需要提示相關人員補貨</small></span></article>
-                <article class="flow-card" tabindex="0"><img src="assets/flow-source-equipment.svg" alt="" /><span><strong>設備保養</strong><small>設備需定期保養，自動通知相關人員維護。</small></span></article>
-                <article class="flow-card" tabindex="0"><img src="assets/flow-source-order.svg" alt="" /><span><strong>訂單異常</strong><small>發現異常自動通報</small></span></article>
-                <article class="flow-card" tabindex="0"><img src="assets/flow-source-work.svg" alt="" /><span><strong>新工單</strong><small>新任務一鍵派送</small></span></article>
-                <article class="flow-card" tabindex="0"><img src="assets/flow-source-leave.svg" alt="" /><span><strong>請假申請</strong><small>職員透過線上申請假單或打卡</small></span></article>
-                <article class="flow-card" tabindex="0"><img src="assets/flow-source-announcement.svg" alt="" /><span><strong>公司公告</strong><small>快速通報給所有職員</small></span></article>
-              </div>
+            <div class="flow-caption flow-caption-source">
+              <strong>01・公司裡發生的事</strong>
+              <span>從現場到辦公室，每一件待處理的事</span>
             </div>
-            <div class="flow-arrow" aria-hidden="true"><span></span></div>
+            <div class="source-grid">
+              <article class="flow-card" tabindex="0"><img src="assets/flow-source-inventory.svg" alt="" /><span><strong>庫存不足</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="assets/flow-source-equipment.svg" alt="" /><span><strong>設備保養</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="assets/flow-source-order.svg" alt="" /><span><strong>訂單異常</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="assets/flow-source-work.svg" alt="" /><span><strong>新工單</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="assets/flow-source-leave.svg" alt="" /><span><strong>請假申請</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="assets/flow-source-announcement.svg" alt="" /><span><strong>公司公告</strong></span></article>
+            </div>
+            <div class="flow-arrow flow-arrow-source" aria-hidden="true"><span></span></div>
+            <div class="flow-caption flow-caption-middle">
+              <strong>02・WorksHub+</strong>
+              <span>自動判斷該通知誰、送給誰</span>
+            </div>
             <div class="flow-core flow-card" tabindex="0">
               <img src="assets/figma-edcbf.png" alt="WorksHub+" />
-              <div>自動判斷該通知誰、送給誰</div>
-            </div>
-            <div class="flow-arrow" aria-hidden="true"><span></span></div>
-            <div class="flow-destination">
-              <span class="flow-label">LINE WORKS</span>
-              <div class="people-grid">
-                <article class="flow-card" tabindex="0" aria-label="門市，通知：倉庫需補貨"><span class="role-message message-blue" aria-hidden="true">通知：倉庫需補貨</span><img src="assets/flow-person-store.svg" alt="" /><strong>門市</strong></article>
-                <article class="flow-card" tabindex="0" aria-label="產線，通知：設備需保養"><span class="role-message message-mint" aria-hidden="true">通知：設備需保養</span><img src="assets/flow-person-production.svg" alt="" /><strong>產線</strong></article>
-                <article class="flow-card" tabindex="0" aria-label="業務，已發送新工單給工程"><span class="role-message message-mint" aria-hidden="true">已發送新工單給工程</span><img src="assets/flow-person-sales.svg" alt="" /><strong>業務</strong></article>
-                <article class="flow-card" tabindex="0" aria-label="外勤，訂單異常通知"><span class="role-message message-blue" aria-hidden="true">訂單異常通知</span><img src="assets/flow-person-field.svg" alt="" /><strong>外勤</strong></article>
-                <article class="flow-card" tabindex="0" aria-label="主管，收到一則請假申請"><span class="role-message message-blue" aria-hidden="true">收到一則請假申請</span><img src="assets/flow-person-manager.svg" alt="" /><strong>主管</strong></article>
-                <article class="flow-card" tabindex="0" aria-label="人資，公司公告已發送"><span class="role-message message-mint" aria-hidden="true">公司公告已發送</span><img src="assets/flow-person-hr.svg" alt="" /><strong>人資</strong></article>
+              <div class="flow-core-rules">
+                <span><img src="assets/figma-f8e97.svg" alt="" />條件&lt;10 ｜通知：外勤人員</span>
+                <span><img src="assets/figma-f8e97.svg" alt="" />職員送簽呈 ｜通知：主管</span>
               </div>
             </div>
-          </div>
-
-          <div class="flow-captions staged-reveal">
-            <div><strong>01・公司裡發生的事</strong><span>庫存不足・設備保養・訂單異常・新工單・請假申請・公司公告</span></div>
-            <div><strong>02・WorksHub+</strong><span>自動判斷該通知誰、送給誰</span></div>
-            <div><strong>03・不分辦公室或第一線</strong><span>門市・產線・業務・外勤・主管・人資，都在 LINE WORKS 收到並處理</span></div>
+            <div class="flow-arrow flow-arrow-destination" aria-hidden="true"><span></span></div>
+            <div class="flow-caption flow-caption-destination">
+              <strong>03・不分辦公室或第一線</strong>
+              <span>他們都在 LINE WORKS 收到並處理</span>
+            </div>
+            <div class="people-grid">
+              <article class="flow-card" tabindex="0" aria-label="門市，通知：倉庫需補貨"><span class="role-message message-blue" aria-hidden="true">通知：倉庫需補貨</span><img src="assets/flow-person-store.svg" alt="" /><strong>門市</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="產線，通知：設備需保養"><span class="role-message message-mint" aria-hidden="true">通知：設備需保養</span><img src="assets/flow-person-production.svg" alt="" /><strong>產線</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="業務，已發送新工單給工程"><span class="role-message message-mint" aria-hidden="true">已發送新工單給工程</span><img src="assets/flow-person-sales.svg" alt="" /><strong>業務</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="外勤，訂單異常通知!"><span class="role-message message-blue" aria-hidden="true">訂單異常通知!</span><img src="assets/flow-person-field.svg" alt="" /><strong>外勤</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="主管，收到一則請假申請"><span class="role-message message-blue" aria-hidden="true">收到一則請假申請</span><img src="assets/flow-person-manager.svg" alt="" /><strong>主管</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="人資，公司公告已發送"><span class="role-message message-mint" aria-hidden="true">公司公告已發送</span><img src="assets/flow-person-hr.svg" alt="" /><strong>人資</strong></article>
+            </div>
           </div>
         </div>
       </section>
@@ -167,7 +170,7 @@
           <div class="section-heading centered reveal">
             <div class="eyebrow"><span></span>CAPABILITIES</div>
             <h2>四種能力，構成企業營運中樞</h2>
-            <p>建構企業治理、服務、整合與洞察的營運能力。</p>
+            <p>建構企業治理、服務、整合與洞察的營運能力</p>
           </div>
           <div class="capability-grid">
             <article class="capability-card motion-card reveal" tabindex="0">
@@ -190,23 +193,42 @@
         </div>
       </section>
 
-      <section class="section automation" id="automation">
+      <section class="section automation timed-sequence" id="automation">
         <div class="container split-grid automation-grid">
-          <div class="automation-visual reveal">
+          <div class="automation-visual sequence-visual">
             <img class="automation-phone-shot" src="assets/figma-3d647.png" alt="LINE WORKS 企業服務 Bot 手機畫面" />
-            <div class="connector-card">
-              <div class="connector-head"><h3>連接器設定</h3><button type="button"><img src="assets/figma-ceab8.svg" alt="" />測試連線</button></div>
-              <div class="connector-field"><img src="assets/figma-f8e97.svg" alt="" />來源系統：ERP</div>
-              <div class="connector-field"><img src="assets/figma-f8e97.svg" alt="" />觸發條件：訂單狀態 = 已出貨</div>
-              <div class="connector-field"><img src="assets/figma-f8e97.svg" alt="" />推播對象：業務部</div>
-              <div class="connector-status"><i></i>連線正常</div>
+            <div class="connector-card" data-connector-card>
+              <div class="connector-success-alert" data-connector-alert role="status" aria-live="polite" aria-hidden="true">
+                <span class="connector-success-icon" aria-hidden="true">✓</span>
+                <span><strong>連線成功</strong><small>ERP 連接器已完成測試</small></span>
+              </div>
+              <div class="connector-head">
+                <h3>連接器設定</h3>
+                <button class="connector-test-button" data-connector-test type="button"><img src="assets/figma-ceab8.svg" alt="" /><span data-connector-test-label>測試連線</span></button>
+              </div>
+              <div class="connector-content-stage">
+                <div class="connector-settings" data-connector-settings>
+                  <div class="connector-field"><img src="assets/figma-f8e97.svg" alt="" />來源系統：ERP</div>
+                  <div class="connector-field"><img src="assets/figma-f8e97.svg" alt="" />觸發條件：訂單狀態 = 已出貨</div>
+                  <div class="connector-field"><img src="assets/figma-f8e97.svg" alt="" />推播對象：業務部</div>
+                </div>
+                <div class="connector-loading" data-connector-loading hidden>
+                  <div class="connector-loading-copy">
+                    <i aria-hidden="true"></i>
+                    <span><strong>正在測試連線</strong><small>確認 ERP 與 WorksHub+ 的連線狀態</small></span>
+                  </div>
+                  <div class="connector-progress" data-connector-progress role="progressbar" aria-label="測試連線進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-connector-progress-bar></i></div>
+                  <div class="connector-progress-meta" aria-hidden="true"><span>連線中…</span><span data-connector-progress-value>0%</span></div>
+                </div>
+              </div>
+              <div class="connector-status" data-connector-status role="status" aria-live="polite" aria-hidden="true"><i></i>連接完成</div>
             </div>
           </div>
 
-          <div class="section-copy reveal">
+          <div class="section-copy sequence-copy">
             <div class="eyebrow"><span></span>BOT AUTOMATION</div>
-            <h2>不必開發 App，<br />也能建立企業服務入口</h2>
-            <p class="lead compact">Bot 市集提供開箱即用的企業流程，<br />整合中台把企業系統接進 LINE WORKS。</p>
+            <h2>不必開發 App<br />也能建立企業服務入口</h2>
+            <p class="lead compact">Bot 市集提供開箱即用的企業流程<br />整合中台把企業系統接進 LINE WORKS</p>
             <ol class="number-list automation-list">
               <li><span>01</span><div><div class="list-title"><h3>Bot 市集</h3><em>開箱即用</em></div><p>啟用打卡、簽核等企業 Bot，預設選單、關鍵字與推播即刻就緒；<br />管理者可自行調整內容與對象，無需工程資源。</p></div></li>
               <li><span>02</span><div><div class="list-title"><h3>整合中台</h3><em>免程式串接</em></div><p>IT 人員免程式串接 ERP、CRM 等企業系統，設定資料、條件與觸發規則，<br />讓系統事件自動轉化為對應人員的推播與流程。</p></div></li>
@@ -220,7 +242,7 @@
           <div class="section-heading centered reveal">
             <div class="eyebrow"><span></span>BOT MARKETPLACE</div>
             <h2>企業常用的流程，已在 Bot 市集就緒</h2>
-            <p>從市集啟用，即刻上線。每一支 Bot 都內建員工端的對話流程，以及管理端的設定與紀錄後台。</p>
+            <p>從市集啟用，即刻上線。每一支 Bot 都內建員工端的對話流程，以及管理端的設定與紀錄後台</p>
           </div>
 
           <div class="tabs" role="tablist" aria-label="Bot 市集">
@@ -258,7 +280,7 @@
           <div class="section-heading centered reveal">
             <div class="eyebrow"><span></span>ENTERPRISE READY</div>
             <h2>企業帳號、權限與操作，都能被管理</h2>
-            <p>登入、資料區隔與操作軌跡都有具體的管理依據。</p>
+            <p>登入、資料區隔與操作軌跡都有具體的管理依據</p>
           </div>
           <div class="security-cards">
             <article class="motion-card reveal" tabindex="0"><img class="security-icon" src="assets/figma-86317.svg" alt="" /><h3>LINE WORKS 單一登入</h3><p>沿用既有 LINE WORKS 帳號登入，免除第二套<br />帳號密碼的維護成本與資安風險。</p></article>
@@ -272,42 +294,42 @@
         <div class="container demo-grid">
           <div class="faq-block reveal">
             <div class="eyebrow light"><span></span>FAQ</div>
-            <h2>導入前，<br />您可能想先知道</h2>
+            <h2>導入前<br />您可能想先知道</h2>
             <div class="faq-list">
               <article class="faq-item open">
                 <button type="button" aria-expanded="true"><span>WorksHub+ 和 LINE WORKS 有什麼不同？</span><i>－</i></button>
                 <div class="faq-answer">LINE WORKS 提供溝通與協作；WorksHub+ 在其之上，提供<br />組織治理、Bot 市集、系統整合與稽核能力。</div>
               </article>
-              <article class="faq-item pending">
+              <article class="faq-item">
                 <button type="button" aria-expanded="false"><span>沒有 IT 人員也能導入嗎？</span><i>＋</i></button>
-                <div class="faq-answer" hidden><em>FAQ 回覆內容待提供</em></div>
+                <div class="faq-answer" hidden>WorksHub+ 的設計重點之一，是降低企業建置與營運 Bot 的技術門檻。HR、IT 或部門管理者可透過後台進行組織、成員、權限與 Bot 設定。若涉及進階系統串接，例如 ERP、CRM 或 HRM 整合，仍需要依照企業系統架構進行技術評估與導入規劃。</div>
               </article>
-              <article class="faq-item pending">
+              <article class="faq-item">
                 <button type="button" aria-expanded="false"><span>可以串接既有的 ERP、CRM 或 HRM 嗎？</span><i>＋</i></button>
-                <div class="faq-answer" hidden><em>FAQ 回覆內容待提供</em></div>
+                <div class="faq-answer" hidden>WorksHub+ 可以協助企業建立 Bot 推播、關鍵字回覆、圖文選單、預設訊息、出勤打卡、內部問答、部門通知、資源預約通知，以及與 ERP、CRM、HRM 等系統串接後的事件提醒與資料推播。<br />實際可導入的自動化流程，會依企業既有系統、資料來源與工作場景而定。</div>
               </article>
-              <article class="faq-item pending">
+              <article class="faq-item">
                 <button type="button" aria-expanded="false"><span>可以先看 Demo 或申請試用嗎？</span><i>＋</i></button>
-                <div class="faq-answer" hidden><em>FAQ 回覆內容待提供</em></div>
+                <div class="faq-answer" hidden>告訴我們您目前的 LINE WORKS 使用方式與希望優化的流程，我們將為您安排專屬展示。</div>
               </article>
             </div>
           </div>
 
           <div class="demo-card reveal">
             <div class="eyebrow"><span></span>BOOK A DEMO</div>
-            <h2>讓工作不只被看見，<br />更能被完成</h2>
+            <h2>讓工作不只被看見<br />更能被完成</h2>
             <p>告訴我們您目前的 LINE WORKS 使用方式與希望優化的流程，我們將為您安排專屬展示。</p>
             <form id="demo-form">
               <div class="form-grid">
-                <label for="demo-name"><span>姓名　必填</span><input id="demo-name" type="text" name="name" autocomplete="name" required /></label>
-                <label for="demo-company"><span>公司名稱　必填</span><input id="demo-company" type="text" name="company" autocomplete="organization" required /></label>
+                <label for="demo-name"><span class="required-field">姓名</span><input id="demo-name" type="text" name="name" autocomplete="name" required /></label>
+                <label for="demo-company"><span class="required-field">公司名稱</span><input id="demo-company" type="text" name="company" autocomplete="organization" required /></label>
                 <label for="demo-role"><span>職稱／部門</span><input id="demo-role" type="text" name="role" autocomplete="organization-title" /></label>
-                <label for="demo-email"><span>Email　必填</span><input id="demo-email" type="email" name="email" autocomplete="email" required /></label>
+                <label for="demo-email"><span class="required-field">E-mail</span><input id="demo-email" type="email" name="email" autocomplete="email" required /></label>
                 <label for="demo-size"><span>公司人數</span><select id="demo-size" name="size" autocomplete="off"><option value=""></option><option>1–50</option><option>51–200</option><option>201–500</option><option>501 以上</option></select></label>
-                <label for="demo-interest"><span>想了解的能力</span><select id="demo-interest" name="interest" autocomplete="off"><option value=""></option><option>組織治理</option><option>Bot 應用服務</option><option>系統整合</option><option>洞察與稽核</option></select></label>
+                <label for="demo-interest"><span>想了解的功能</span><select id="demo-interest" name="interest" autocomplete="off"><option value=""></option><option>組織治理</option><option>Bot 應用服務</option><option>系統整合</option><option>洞察與稽核</option></select></label>
               </div>
               <label class="full-field" for="demo-message"><span>需求說明</span><textarea id="demo-message" name="message" rows="4" autocomplete="off"></textarea></label>
-              <button class="button form-submit" type="submit">預約 WorksHub+ Demo <span aria-hidden="true">→</span></button>
+              <button class="button form-submit" type="submit">預約 WorksHub+ Demo</button>
               <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
             </form>
           </div>
@@ -323,6 +345,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260930-motion"></script>
+    <script src="script.js?v=20260930-stagger-600"></script>
   </body>
 </html>

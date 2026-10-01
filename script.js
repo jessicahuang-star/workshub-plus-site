@@ -40,9 +40,10 @@
       parallaxFrame = 0;
       if (reducedMotionMedia.matches || !heroInView || !heroSection) return;
       const traveled = Math.min(Math.max(-heroSection.getBoundingClientRect().top, 0), heroSection.offsetHeight);
-      heroShowcase.style.setProperty('--hero-parallax-web', `${(traveled * .04).toFixed(2)}px`);
-      heroShowcase.style.setProperty('--hero-parallax-phone', `${(traveled * .08).toFixed(2)}px`);
-      heroShowcase.style.setProperty('--hero-parallax-detail', `${(traveled * .06).toFixed(2)}px`);
+      const phoneFloat = Math.sin(traveled / 75) * 6;
+      heroShowcase.style.setProperty('--hero-parallax-web', `${(traveled * .03).toFixed(2)}px`);
+      heroShowcase.style.setProperty('--hero-parallax-phone', `${((traveled * .055) + phoneFloat).toFixed(2)}px`);
+      heroShowcase.style.setProperty('--hero-parallax-detail', `${(traveled * .04).toFixed(2)}px`);
     };
 
     const queueHeroParallax = () => {
@@ -183,6 +184,28 @@
     }
   }
 
+  const marketplace = document.querySelector('.marketplace');
+  const journeyPanels = Array.from(document.querySelectorAll('.marketplace [role="tabpanel"]'));
+  let marketplaceInView = false;
+
+  journeyPanels.forEach((panel) => {
+    panel.querySelectorAll('.journey-grid > *').forEach((step, index) => {
+      step.classList.add('journey-step');
+      step.style.setProperty('--journey-delay', `${index * 180}ms`);
+    });
+  });
+
+  const animateJourney = (panel) => {
+    if (!panel) return;
+    if (reducedMotionMedia.matches) {
+      panel.classList.add('journey-visible');
+      return;
+    }
+    panel.classList.remove('journey-visible');
+    void panel.offsetWidth;
+    window.requestAnimationFrame(() => panel.classList.add('journey-visible'));
+  };
+
   const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
   const defaultTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0];
   if (defaultTab) {
@@ -202,6 +225,7 @@
         const isActive = panel.id === activePanelId;
         panel.hidden = !isActive;
         panel.classList.toggle('active', isActive);
+        if (isActive && marketplaceInView) animateJourney(panel);
       });
     });
 
@@ -215,6 +239,23 @@
       nextTab.click();
     });
   });
+
+  if (marketplace) {
+    const showActiveJourney = () => {
+      marketplaceInView = true;
+      animateJourney(marketplace.querySelector('.tab-panel.active'));
+    };
+    if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
+      const marketplaceObserver = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        showActiveJourney();
+        marketplaceObserver.unobserve(marketplace);
+      }, { threshold: .16 });
+      marketplaceObserver.observe(marketplace);
+    } else {
+      showActiveJourney();
+    }
+  }
 
   document.querySelectorAll('.faq-item button').forEach((button) => {
     button.addEventListener('click', () => {
@@ -237,6 +278,156 @@
     });
   }
 
+  const connectorInteractiveCard = document.querySelector('[data-connector-card]');
+  if (connectorInteractiveCard) {
+    const testButton = connectorInteractiveCard.querySelector('[data-connector-test]');
+    const testButtonLabel = connectorInteractiveCard.querySelector('[data-connector-test-label]');
+    const settings = connectorInteractiveCard.querySelector('[data-connector-settings]');
+    const loading = connectorInteractiveCard.querySelector('[data-connector-loading]');
+    const progress = connectorInteractiveCard.querySelector('[data-connector-progress]');
+    const progressBar = connectorInteractiveCard.querySelector('[data-connector-progress-bar]');
+    const progressValue = connectorInteractiveCard.querySelector('[data-connector-progress-value]');
+    const status = connectorInteractiveCard.querySelector('[data-connector-status]');
+    const successAlert = connectorInteractiveCard.querySelector('[data-connector-alert]');
+    let connectorRunning = false;
+    let connectorFrame = 0;
+    let connectorAlertTimer = 0;
+
+    const updateConnectorProgress = (value) => {
+      const rounded = Math.max(0, Math.min(100, Math.round(value)));
+      progressBar.style.width = `${rounded}%`;
+      progress.setAttribute('aria-valuenow', String(rounded));
+      progressValue.textContent = `${rounded}%`;
+    };
+
+    const showConnectorAlert = () => {
+      window.clearTimeout(connectorAlertTimer);
+      successAlert.setAttribute('aria-hidden', 'false');
+      successAlert.classList.add('is-visible');
+      connectorAlertTimer = window.setTimeout(() => {
+        successAlert.classList.remove('is-visible');
+        successAlert.setAttribute('aria-hidden', 'true');
+      }, 2000);
+    };
+
+    const finishConnectorTest = () => {
+      updateConnectorProgress(100);
+      loading.hidden = true;
+      settings.hidden = false;
+      status.setAttribute('aria-hidden', 'false');
+      status.classList.add('is-visible');
+      testButton.disabled = false;
+      testButtonLabel.textContent = '重新測試';
+      connectorRunning = false;
+      showConnectorAlert();
+    };
+
+    const runConnectorProgress = () => {
+      const duration = reducedMotionMedia.matches ? 450 : 1800;
+      const startedAt = performance.now();
+      const tick = (time) => {
+        const elapsed = time - startedAt;
+        const ratio = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - ratio, 3);
+        updateConnectorProgress(eased * 100);
+        if (ratio < 1) connectorFrame = window.requestAnimationFrame(tick);
+        else finishConnectorTest();
+      };
+      connectorFrame = window.requestAnimationFrame(tick);
+    };
+
+    testButton.addEventListener('click', () => {
+      if (connectorRunning) return;
+      connectorRunning = true;
+      window.cancelAnimationFrame(connectorFrame);
+      window.clearTimeout(connectorAlertTimer);
+      successAlert.classList.remove('is-visible');
+      successAlert.setAttribute('aria-hidden', 'true');
+      status.classList.remove('is-visible');
+      status.setAttribute('aria-hidden', 'true');
+      settings.hidden = true;
+      loading.hidden = false;
+      testButton.disabled = true;
+      testButtonLabel.textContent = '連線中';
+      updateConnectorProgress(0);
+      runConnectorProgress();
+    });
+  }
+
+  const timedSequenceInterval = 600;
+  const timedSequenceDefinitions = [
+    {
+      section: document.querySelector('.friction.timed-sequence'),
+      textSelector: '.sequence-copy > .eyebrow, .sequence-copy > h2, .sequence-copy > .number-list > li',
+      visualSelectors: ['.friction-board']
+    },
+    {
+      section: document.querySelector('.automation.timed-sequence'),
+      textSelector: '.sequence-copy > .eyebrow, .sequence-copy > h2, .sequence-copy > .lead, .sequence-copy > .number-list > li',
+      visualSelectors: ['.automation-phone-shot', '.connector-card']
+    }
+  ];
+
+  const timedSequences = timedSequenceDefinitions.flatMap(({ section, textSelector, visualSelectors }) => {
+    if (!section) return [];
+    const textItems = Array.from(section.querySelectorAll(textSelector));
+    textItems.forEach((item, index) => {
+      item.classList.add('sequence-item');
+      item.style.setProperty('--sequence-delay', `${index * timedSequenceInterval}ms`);
+    });
+    const visualItems = visualSelectors.map((selector) => section.querySelector(selector)).filter(Boolean);
+    visualItems.forEach((item, index) => {
+      item.classList.add('sequence-item');
+      item.style.setProperty('--sequence-delay', `${(textItems.length + index) * timedSequenceInterval}ms`);
+    });
+    return [{ section, duration: (textItems.length + visualItems.length) * timedSequenceInterval }];
+  });
+
+  const activateTimedSequence = ({ section, duration }) => {
+    section.classList.add('sequence-visible');
+    window.setTimeout(() => section.classList.add('sequence-complete'), reducedMotionMedia.matches ? 0 : duration + 900);
+  };
+
+  if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
+    const timedObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const sequence = timedSequences.find((item) => item.section === entry.target);
+        if (sequence) activateTimedSequence(sequence);
+        timedObserver.unobserve(entry.target);
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -4%' });
+    timedSequences.forEach(({ section }) => timedObserver.observe(section));
+  } else {
+    timedSequences.forEach(activateTimedSequence);
+  }
+
+  const automationSection = document.querySelector('.automation');
+  const connectorCard = automationSection?.querySelector('.connector-card');
+  if (automationSection && connectorCard && !reducedMotionMedia.matches) {
+    let automationInView = false;
+    let automationFrame = 0;
+    const updateConnectorParallax = () => {
+      automationFrame = 0;
+      if (!automationInView) return;
+      const rect = automationSection.getBoundingClientRect();
+      const distanceFromCenter = (window.innerHeight * .5) - (rect.top + rect.height * .5);
+      const offset = Math.max(-28, Math.min(28, distanceFromCenter * .055));
+      connectorCard.style.setProperty('--connector-parallax', `${offset.toFixed(2)}px`);
+    };
+    const queueConnectorParallax = () => {
+      if (!automationFrame) automationFrame = window.requestAnimationFrame(updateConnectorParallax);
+    };
+    const automationObserver = new IntersectionObserver(([entry]) => {
+      automationInView = entry.isIntersecting;
+      automationSection.classList.toggle('parallax-active', automationInView);
+      if (automationInView) queueConnectorParallax();
+    });
+    automationObserver.observe(automationSection);
+    window.addEventListener('scroll', queueConnectorParallax, { passive: true });
+    window.addEventListener('resize', queueConnectorParallax);
+  }
+
   const revealItems = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
     const observer = new IntersectionObserver((entries) => {
@@ -254,12 +445,43 @@
 
   const flowSequence = document.querySelector('.flow-sequence');
   if (flowSequence) {
-    const flowSteps = flowSequence.querySelectorAll('.flow-label, .source-grid article, .flow-arrow, .flow-core, .people-grid article');
+    const flowSteps = flowSequence.querySelectorAll('.flow-caption, .source-grid article, .flow-arrow, .flow-core, .people-grid article');
     flowSteps.forEach((step, index) => {
       step.classList.add('flow-step');
       step.style.setProperty('--flow-delay', `${index * 55}ms`);
     });
   }
+
+  const roleCards = Array.from(document.querySelectorAll('.people-grid article'));
+  const setRoleMessageState = (card, open) => {
+    card.classList.toggle('message-open', open);
+    card.setAttribute('aria-expanded', String(open));
+    card.querySelector('.role-message')?.setAttribute('aria-hidden', String(!open));
+  };
+  const closeRoleMessages = (except) => {
+    roleCards.forEach((card) => {
+      if (card !== except) setRoleMessageState(card, false);
+    });
+  };
+
+  roleCards.forEach((card) => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
+    card.addEventListener('click', () => {
+      const shouldOpen = !card.classList.contains('message-open');
+      closeRoleMessages(card);
+      setRoleMessageState(card, shouldOpen);
+    });
+    card.addEventListener('keydown', (event) => {
+      if (!['Enter', ' '].includes(event.key)) return;
+      event.preventDefault();
+      card.click();
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.people-grid article')) closeRoleMessages();
+  });
 
   const stagedRevealItems = document.querySelectorAll('.staged-reveal');
   if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
