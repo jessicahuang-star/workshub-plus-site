@@ -577,4 +577,17 @@
   } else {
     stagedRevealItems.forEach((item) => item.classList.add('visible'));
   }
+
+  // 嵌入 Wix 時，通知外層頁面捲到預約表單
+  document.addEventListener('click', (event) => {
+    const link = event.target instanceof Element
+      ? event.target.closest('a[href="#demo"]')
+      : null;
+    if (!link || window.parent === window) return;
+    event.preventDefault();
+    window.parent.postMessage(
+      { type: 'WORKSHUB_SCROLL_TO_DEMO' },
+      'https://www.coolbe.com.tw'
+    );
+  });
 })();
