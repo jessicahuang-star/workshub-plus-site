@@ -1,4 +1,8 @@
 (() => {
+  // Hide the inner scrollbar in Wix embeds while preserving scrolling.
+  if (window.self !== window.top) {
+    document.documentElement.classList.add('embedded-page');
+  }
   document.documentElement.classList.add('motion-enabled');
   const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
   const menuButton = document.querySelector('.menu-toggle');

@@ -19,6 +19,17 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* Embedded pages keep scrolling, but only the outer site's scrollbar is visible. */
+html.embedded-page,
+html.embedded-page body {
+  scrollbar-width: none;
+}
+html.embedded-page::-webkit-scrollbar,
+html.embedded-page body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
 body {
   margin: 0;
   color: var(--navy);
