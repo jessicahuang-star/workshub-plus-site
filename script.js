@@ -269,12 +269,95 @@
     });
   });
 
-  const demoForm = document.querySelector('#demo-form');
+   const demoForm = document.querySelector('#demo-form');
   const formStatus = document.querySelector('#form-status');
+
   if (demoForm && formStatus) {
+    const wixOrigin = 'https://www.coolbe.com.tw';
+    const submitButton = demoForm.querySelector('[type="submit"]');
+    const originalLabel = submitButton.textContent;
+    const sizeMap = {
+      '1–50': '1 - 50',
+      '51–200': '51 - 200',
+      '201–500': '201 - 500',
+      '501 以上': '501以上'
+    };
+
+    let pendingId = null;
+    let timeoutId;
+
+    function finish(text, success) {
+      window.clearTimeout(timeoutId);
+      pendingId = null;
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+      formStatus.textContent = text;
+      if (success) demoForm.reset();
+    }
+
+    window.addEventListener('message', (event) => {
+      if (event.source !== window.parent ||
+          event.origin !== wixOrigin) return;
+
+      const result = event.data;
+      if (!result ||
+          result.type !== 'WORKSHUB_DEMO_RESULT' ||
+          !pendingId ||
+          result.requestId !== pendingId) return;
+
+      finish(
+        result.success === true
+          ? '預約已送出，我們將與您聯絡。'
+          : '送出未完成，請稍後再試。',
+        result.success === true
+      );
+    });
+
     demoForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      formStatus.textContent = '表單尚未串接送出端點；上架 Wix 前請設定接收方式。';
+      if (pendingId || !demoForm.reportValidity()) return;
+
+      if (window.parent === window) {
+        formStatus.textContent = '請前往 CoolBe 官網完成預約。';
+        const link = document.createElement('a');
+        link.href =
+          'https://www.coolbe.com.tw/solution/digital-transformation/#demo';
+        link.textContent = '前往預約頁面';
+        formStatus.append(' ', link);
+        return;
+      }
+
+      const values = new FormData(demoForm);
+      const size = String(values.get('size') || '');
+      const interest = String(values.get('interest') || '');
+
+      pendingId = window.crypto.randomUUID();
+      submitButton.disabled = true;
+      submitButton.textContent = '送出中…';
+      formStatus.textContent = '正在送出，請稍候。';
+
+      timeoutId = window.setTimeout(() => {
+        finish(
+          '尚未收到送出結果，請先聯絡我們確認是否收到，避免重複預約。',
+          false
+        );
+      }, 30000);
+
+      window.parent.postMessage({
+        type: 'WORKSHUB_DEMO_SUBMIT',
+        requestId: pendingId,
+        data: {
+          name: String(values.get('name') || ''),
+          company: String(values.get('company') || ''),
+          jobTitle: String(values.get('role') || ''),
+          email: String(values.get('email') || ''),
+          companySize: sizeMap[size] || size,
+          feature: interest === 'Bot 應用服務'
+            ? 'Bot應用服務'
+            : interest,
+          message: String(values.get('message') || '')
+        }
+      }, wixOrigin);
     });
   }
 
