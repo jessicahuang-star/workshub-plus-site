@@ -1,0 +1,2065 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="WorksHub+ connects your offices, stores, warehouses and field teams, helping you build an operations hub that keeps running on autopilot." />
+    <meta name="theme-color" content="#0b4b9f" />
+    <title>CoolBe WorksHub+ | Enterprise Operations Hub</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%232fd2b6'/%3E%3Cstop offset='1' stop-color='%232f8fe8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='url(%23g)' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M22 24h14v14H22z' fill='%231d4f86'/%3E%3Cpath d='M28 30h14v14H28z' fill='%233b91df'/%3E%3Cpath d='M44 13v12M38 19h12' stroke='%232fd2b6' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <style>
+:root {
+  --navy: #10253f;
+  --navy-deep: #071a31;
+  --blue: #0c69df;
+  --blue-deep: #07478f;
+  --blue-soft: #eaf4ff;
+  --cyan: #34c7d7;
+  --mint: #2fd2b6;
+  --green: #16b875;
+  --yellow: #f6c85f;
+  --surface: #f4f8fc;
+  --line: #dce6f1;
+  --muted: #61738a;
+  --white: #fff;
+  --shadow: 0 24px 60px rgba(18, 50, 84, 0.14);
+  --radius: 24px;
+  --container: 1200px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+/* Embedded pages keep scrolling, but only the outer site's scrollbar is visible. */
+html.embedded-page,
+html.embedded-page body {
+  scrollbar-width: none;
+}
+html.embedded-page::-webkit-scrollbar,
+html.embedded-page body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+body {
+  margin: 0;
+  color: var(--navy);
+  background: #fff;
+  font-family: "Helvetica Neue", Helvetica, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+body.menu-open { overflow: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+button { color: inherit; }
+h1, h2, h3, h4, p { margin-top: 0; }
+h1, h2, h3, h4 { line-height: 1.22; }
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -56px;
+  z-index: 999;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--navy);
+  transition: top .2s ease;
+  opacity: 0;
+}
+.skip-link:focus-visible { top: 16px; opacity: 1; }
+.container { width: min(calc(100% - 48px), var(--container)); margin-inline: auto; }
+.section { position: relative; padding: 80px 0; overflow: hidden; }
+.split-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 90px; align-items: center; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, .93);
+  border-bottom: 1px solid rgba(220, 230, 241, .82);
+  backdrop-filter: blur(18px);
+}
+.header-inner { height: 78px; display: flex; align-items: center; gap: 38px; }
+.brand { display: flex; align-items: center; gap: 12px; width: 238px; margin-right: auto; }
+.brand > i { width: 1px; height: 25px; background: var(--line); }
+.coolbe-wordmark { color: #2d313a; font-size: 20px; font-weight: 900; letter-spacing: -.04em; white-space: nowrap; }
+.coolbe-wordmark span { color: #2d9cd6; }
+.brand img { width: 105px; height: 48px; object-fit: contain; object-position: left center; }
+.desktop-nav { display: flex; align-items: center; gap: 30px; color: #53647a; font-size: 14px; font-weight: 700; }
+.desktop-nav a { position: relative; padding: 28px 0; }
+.desktop-nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 17px;
+  width: 0;
+  height: 2px;
+  background: var(--blue);
+  transition: width .2s ease, left .2s ease;
+}
+.desktop-nav a:hover::after, .desktop-nav a:focus-visible::after { left: 0; width: 100%; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 25px;
+  border: 0;
+  border-radius: 13px;
+  color: #fff;
+  background: linear-gradient(135deg, #0869e8, #0656c7);
+  box-shadow: 0 12px 28px rgba(7, 94, 229, .24);
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.button:hover, .button:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(7, 94, 229, .32); }
+.button-small { min-height: 42px; padding: 0 20px; border-radius: 10px; font-size: 14px; }
+.menu-toggle { display: none; width: 42px; height: 42px; padding: 10px; border: 0; background: transparent; cursor: pointer; }
+.menu-toggle span { display: block; height: 2px; margin: 5px 0; background: var(--navy); transition: transform .2s ease, opacity .2s ease; }
+.mobile-nav { display: none; }
+
+.hero { min-height: auto; padding: 80px 0; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); }
+.hero-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 48px; align-items: center; }
+.hero-copy { position: relative; z-index: 3; }
+.eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; color: var(--blue); font-size: 14px; font-weight: 900; line-height: 21.45px; letter-spacing: 1.95px; }
+.eyebrow::before, .eyebrow::after { content: ""; flex: 0 0 27px; width: 27px; height: 2px; background: currentColor; }
+.eyebrow > span { display: none; }
+.hero h1 { margin-bottom: 28px; font-size: clamp(46px, 4.4vw, 64px); letter-spacing: 0; }
+.hero h1 em { color: var(--blue); font-style: normal; }
+.lead { margin-bottom: 34px; color: var(--muted); font-size: 18px; line-height: 1.8; }
+.hero-actions { display: flex; align-items: center; gap: 34px; margin-bottom: 46px; }
+.text-link { color: var(--blue-deep); font-weight: 800; }
+.text-link span { display: inline-block; margin-left: 4px; transition: transform .2s ease; }
+.text-link:hover span { transform: translateY(3px); }
+.dual-core { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding-top: 24px; border-top: 1px solid var(--line); }
+.dual-core div { display: grid; gap: 3px; }
+.dual-core div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.dual-core strong { color: var(--blue-deep); font-size: 11px; letter-spacing: .12em; }
+.dual-core span { color: var(--muted); font-size: 13px; }
+.hero-visual { position: relative; min-height: 540px; }
+.browser-frame { position: absolute; inset: 52px 0 auto 26px; z-index: 1; overflow: hidden; border: 1px solid #d4e0ed; border-radius: 22px; background: #fff; box-shadow: var(--shadow); transform: perspective(1200px) rotateY(-2deg) rotateX(1deg); }
+.browser-bar { height: 45px; display: flex; align-items: center; gap: 7px; padding: 0 16px; color: #718097; background: #edf3f8; font-size: 11px; }
+.browser-bar span { width: 8px; height: 8px; border-radius: 50%; background: #b5c4d5; }
+.browser-bar b { margin-left: 8px; font-weight: 700; }
+.browser-shot { height: 370px; overflow: hidden; background: #fff; }
+.browser-shot img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+.phone-frame { position: absolute; right: -8px; bottom: 4px; z-index: 4; width: 182px; height: 356px; overflow: hidden; padding: 8px; border: 6px solid #122238; border-radius: 30px; background: #fff; box-shadow: 0 28px 56px rgba(5, 24, 49, .32); }
+.phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 19px; }
+.phone-speaker { position: absolute; z-index: 2; top: 12px; left: 50%; width: 52px; height: 5px; border-radius: 3px; background: #142238; transform: translateX(-50%); }
+.float-chip { position: absolute; z-index: 5; display: flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid #d9e4ef; border-radius: 999px; background: rgba(255,255,255,.95); box-shadow: 0 10px 26px rgba(19, 52, 88, .14); color: var(--blue-deep); font-size: 12px; font-weight: 800; }
+.float-chip img { width: 27px; height: 27px; object-fit: contain; }
+.float-chat { left: 4px; bottom: 36px; }
+.scene-badge { position: absolute; z-index: 3; min-width: 104px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; box-shadow: 0 8px 22px rgba(19, 52, 88, .08); font-size: 13px; font-weight: 800; }
+.scene-badge i { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--blue); }
+.scene-office { top: 6px; left: 84px; }
+.scene-store { top: 18px; right: 18px; }
+.scene-store i { background: var(--mint); }
+.scene-warehouse { bottom: 20px; left: 152px; }
+.scene-warehouse i { background: var(--blue-deep); }
+.scene-field { right: 2px; bottom: 82px; }
+.scene-field i { background: var(--yellow); }
+.hero-orb { position: absolute; border-radius: 50%; filter: blur(2px); pointer-events: none; }
+.hero-orb-a { top: 58px; right: -100px; width: 320px; height: 320px; background: radial-gradient(circle at 35% 35%, rgba(47,210,182,.22), rgba(47,210,182,0) 68%); }
+.hero-orb-b { left: -180px; bottom: -130px; width: 420px; height: 420px; background: radial-gradient(circle at 50% 50%, rgba(12,105,223,.12), rgba(12,105,223,0) 68%); }
+
+.friction { background: var(--surface); }
+.friction-board { position: relative; min-height: 506px; }
+.board-kicker { margin-bottom: 6px; color: #7a899c; font-size: 14px; font-weight: 800; line-height: 19.8px; letter-spacing: .96px; }
+.friction-board h3 { margin-bottom: 24px; font-size: 32px; line-height: 29.28px; }
+.friction-carousel { position: relative; height: 426px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 22px 24px rgba(23,56,92,.08); }
+.friction-viewport { height: 100%; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; }
+.friction-carousel.is-dragging .friction-viewport { cursor: grabbing; }
+.friction-track { display: flex; height: 100%; will-change: transform; transform: translate3d(-100%,0,0); transition: transform .45s cubic-bezier(.22,.61,.36,1); }
+.friction-slide { position: relative; display: flex; flex: 0 0 100%; align-items: flex-start; justify-content: center; height: 100%; padding: 40px 40px 30px; }
+.breakpoint-tag { position: absolute; top: 22px; left: 21px; z-index: 2; display: inline-flex; align-items: center; min-height: 38px; padding: 4px 18px; border-radius: 25px; color: #fff; background: #ff5900; font-size: 18px; font-weight: 800; line-height: 1.62; }
+.friction-slide-content { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; }
+.friction-slide-content img { width: 200px; height: 200px; max-width: none; object-fit: cover; pointer-events: none; }
+.friction-slide-content h4 { margin: 0; color: var(--navy); font-size: 24px; line-height: 26.4px; letter-spacing: 2px; }
+.friction-slide-content p { width: 320px; max-width: 100%; margin: 0; padding-top: 8px; color: var(--muted); font-size: 16px; line-height: 23.1px; }
+.friction-dots { position: absolute; bottom: 23px; left: 50%; z-index: 3; display: flex; gap: 4px; transform: translateX(-50%); }
+.friction-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #cfdcec; cursor: pointer; }
+.friction-dots button[aria-current="true"] { background: #9cadc1; }
+.friction-dots button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.section-copy h2, .section-heading h2 { margin-bottom: 22px; font-size: clamp(36px, 3.4vw, 48px); letter-spacing: 0; }
+.section-heading > p, .section-copy > p { color: var(--muted); font-size: 20px; line-height: 1.485; }
+.number-list { margin: 50px 0 0; padding: 0; list-style: none; }
+.number-list li { display: grid; grid-template-columns: 34px 1fr; gap: 18px; padding: 28px 0; border-top: 1px solid var(--line); }
+.number-list li:first-child { border-top: 0; padding-top: 0; }
+.number-list > li > span { color: var(--blue); font-size: 16px; font-weight: 900; }
+.number-list h3 { margin-bottom: 8px; font-size: 24px; line-height: 24.4px; }
+.number-list p { margin: 0; color: var(--muted); font-size: 16px; line-height: 23.1px; }
+
+.value-section { background: #fff; }
+.section-heading { max-width: 100%; margin-bottom: 54px; }
+.section-heading.centered { max-width: 920px; margin-inline: auto; text-align: center; }
+.section-heading.centered .eyebrow { justify-content: center; }
+.section-heading > p { margin-bottom: 0; }
+.value-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.value-card { min-height: 310px; padding: 30px; border: 1px solid var(--line); border-radius: 20px; background: #fff; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.value-card:hover { transform: translateY(-6px); border-color: #bed9f8; box-shadow: 0 20px 44px rgba(23, 56, 92, .10); }
+.value-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 45px; }
+.card-number { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; color: var(--blue); background: var(--blue-soft); font-size: 16px; font-weight: 900; line-height: 19.8px; }
+.flat-icon { display: grid; place-items: center; width: 70px; height: 70px; border-radius: 20px 20px 20px 6px; color: #fff; font-size: 30px; font-weight: 900; box-shadow: 0 16px 26px rgba(12, 105, 223, .16); }
+.flat-blue { background: linear-gradient(145deg, var(--cyan), var(--blue)); }
+.asset-icon { width: 76px; height: 76px; object-fit: contain; filter: drop-shadow(0 12px 16px rgba(17, 65, 100, .12)); }
+.value-card h3 { margin-bottom: 15px; font-size: 24px; line-height: 28.06px; }
+.value-card p { margin: 0; color: var(--muted); font-size: 16px; line-height: 23.1px; }
+
+.how-it-works { padding-bottom: 80px; color: #fff; background: radial-gradient(circle at 12% 12%, rgba(29,136,235,.32), transparent 28%), linear-gradient(135deg, #063a7e, #092d61); }
+.on-dark h2 { color: #fff; }
+.on-dark p { color: #c5d9f2; }
+.on-dark .eyebrow { color: #82bdff; }
+.how-it-works .section-heading.centered { max-width: 1120px; }
+.flow-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) 54px minmax(0, 1fr) 54px minmax(0, 1.5fr);
+  grid-template-rows: auto minmax(243px, auto);
+  column-gap: 18px;
+  row-gap: 10px;
+  align-items: center;
+  min-height: 388px;
+  padding: 39px 29px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 26px;
+  background: rgba(255,255,255,.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.flow-caption { display: grid; align-self: start; gap: 6px; min-width: 0; min-height: 47px; text-align: center; }
+.flow-caption strong { color: #9bc9ff; font-size: 20px; font-weight: 900; line-height: 18.15px; letter-spacing: .55px; }
+.flow-caption span { overflow: visible; color: #fff; font-size: 14px; line-height: 21.45px; white-space: nowrap; }
+.flow-caption-source { grid-column: 1; grid-row: 1; align-items: center; text-align: center; }
+.flow-caption-source span { text-align: center; }
+.flow-caption-middle { grid-column: 3; grid-row: 1; }
+.flow-caption-destination { grid-column: 5; grid-row: 1; }
+.source-grid { grid-column: 1; grid-row: 2; }
+.flow-arrow-source { grid-column: 2; grid-row: 2; }
+.flow-core { grid-column: 3; grid-row: 2; width: 100%; }
+.flow-arrow-destination { grid-column: 4; grid-row: 2; }
+.people-grid { grid-column: 5; grid-row: 2; }
+.source-grid, .people-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+.source-grid { gap: 16px; }
+.people-grid { gap: 8px; }
+.source-grid article, .people-grid article { display: flex; align-items: center; gap: 9px; min-height: 58px; padding: 10px; border-radius: 13px; color: var(--navy); background: #fff; font-size: 12px; font-weight: 800; }
+.source-grid img { flex: 0 0 40px; width: 40px; height: 40px; }
+.source-grid article > span { display: grid; min-width: 0; gap: 4px; }
+.source-grid strong { font-size: 16px; line-height: 19.8px; }
+.source-grid small { overflow: hidden; color: #9cadc1; font-size: 12px; font-weight: 400; line-height: 1.2; }
+.flow-arrow { position: relative; height: 2px; background: #b5c4d5; }
+.flow-arrow-source { background: #b2c1d2; }
+.flow-arrow::after { content: ""; position: absolute; right: -1px; top: -4px; width: 10px; height: 10px; border-top: 2px solid #b5c4d5; border-right: 2px solid #b5c4d5; transform: rotate(45deg); }
+.flow-arrow span { position: absolute; inset: -7.5px auto auto -4px; width: 15px; height: 15px; border-radius: 50%; background: #2fd2b6; box-shadow: 0 0 0 7px rgba(47,210,182,.09); }
+@keyframes pulse { 50% { box-shadow: 0 0 0 10px rgba(47,210,182,0); } }
+.flow-core { display: grid; place-items: center; min-height: 220px; padding: 25px 18px; border: 1px solid rgba(255,255,255,.20); border-radius: 26px; background: linear-gradient(160deg, rgba(255,255,255,.96), rgba(226,242,255,.9)); box-shadow: 0 20px 40px rgba(0,0,0,.16); color: var(--blue-deep); text-align: center; }
+.flow-core img { width: 100%; height: 123px; object-fit: contain; }
+.flow-core-rules { display: grid; width: 100%; gap: 8px; font-size: 11px; line-height: 19.8px; text-align: left; }
+.flow-core-rules span { display: flex; align-items: center; gap: 4px; min-height: 30px; padding: 4px 13px; border: 1px solid #61738a; border-radius: 9px; color: #61738a; white-space: nowrap; }
+.flow-core-rules span img { flex: 0 0 10px; width: 10px; height: 10px; }
+.people-grid { grid-template-columns: repeat(2, 1fr); overflow: visible; }
+.people-grid article { position: relative; justify-content: center; overflow: visible; outline: 0; cursor: pointer; transition: transform .22s ease, box-shadow .22s ease; }
+.people-grid article:hover, .people-grid article:focus-visible { z-index: 3; transform: translateY(-2px); box-shadow: 0 12px 24px rgba(1, 26, 67, .2); }
+.people-grid article:focus-visible { outline: 2px solid #7cc5ff; outline-offset: 3px; }
+.people-grid img { flex: 0 0 24px; width: 24px; height: 40px; object-fit: contain; }
+.people-grid strong { font-size: 16px; line-height: 19.8px; }
+.role-message {
+  --message-bg: #eaf4ff;
+  position: absolute;
+  left: -26px;
+  bottom: 7px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 75px;
+  min-height: 23px;
+  padding: 8px;
+  border-radius: 3px;
+  color: #132236;
+  background: var(--message-bg);
+  box-shadow: 0 4px 12px rgba(0, 28, 72, .08);
+  font-size: 9pt;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-8px) scale(.76);
+  transform-origin: right center;
+  transition: opacity .2s ease, transform .28s cubic-bezier(.2, .8, .2, 1);
+}
+.role-message::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: -6px;
+  border-top: 5px solid var(--message-bg);
+  border-right: 6px solid transparent;
+}
+.message-mint { --message-bg: #e7fbf8; }
+.people-grid article.message-open .role-message { opacity: 1; transform: translateX(0) scale(1); }
+
+.capabilities { background: #fff; }
+.capability-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.capability-card { padding: 28px 30px 0; border: 1px solid var(--line); border-radius: 20px; background: #fff; overflow: hidden; }
+.capability-card.featured { border-color: #c5ddfa; background: #eef6ff; }
+.cap-head { display: flex; align-items: center; gap: 16px; }
+.cap-icon { display: grid; place-items: center; width: 47px; height: 47px; border-radius: 13px; color: #fff; font-weight: 900; }
+.cap-cyan { background: linear-gradient(145deg, #50d4e3, #198ee6); }
+.cap-mint { background: linear-gradient(145deg, #48deb7, #17a981); }
+.cap-yellow { background: linear-gradient(145deg, #ffd76c, #e6a632); }
+.cap-blue { background: linear-gradient(145deg, #598ff3, #2d53c7); }
+.cap-head small { color: #7d8ca2; font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+.cap-head h3 { margin: 2px 0 0; font-size: 24px; line-height: 25.62px; }
+.capability-card > p { min-height: 85px; margin: 28px 0 0; color: var(--muted); font-size: 16px; line-height: 23.1px; }
+.capability-card footer { margin-top: 22px; padding: 17px 0 19px; border-top: 1px solid var(--line); color: #74869d; font-size: 12px; font-weight: 700; }
+
+.automation { background: var(--surface); }
+.automation-grid { grid-template-columns: 1.05fr .95fr; }
+.automation-visual { position: relative; min-height: 610px; }
+.phone-large { position: absolute; left: 16px; top: 0; width: 248px; height: 506px; overflow: hidden; padding: 9px; border: 8px solid #15263b; border-radius: 38px; background: #fff; box-shadow: 0 28px 56px rgba(10, 38, 71, .22); }
+.phone-large img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 23px; }
+.phone-top { position: absolute; top: 12px; left: 50%; z-index: 2; width: 70px; height: 7px; border-radius: 5px; background: #15263b; transform: translateX(-50%); }
+.connector-card { position: absolute; right: 0; bottom: 52px; width: 360px; overflow: hidden; padding: 25px; border: 1px solid var(--line); border-radius: 20px; background: #fff; box-shadow: 0 24px 50px rgba(17, 57, 96, .13); }
+.connector-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.connector-head h3 { margin: 0; font-size: 20px; }
+.connector-head button { min-height: 36px; padding: 8px 12px; border: 0; border-radius: 8px; color: #fff; background: var(--blue); cursor: pointer; font-size: 11px; font-weight: 800; transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.connector-head button:hover { background: #064fc0; box-shadow: 0 8px 18px rgba(7, 94, 229, .2); transform: translateY(-1px); }
+.connector-head button:focus-visible { outline: 3px solid rgba(7, 94, 229, .24); outline-offset: 3px; }
+.connector-head button:disabled { color: #637590; background: #e7eef7; box-shadow: none; cursor: wait; transform: none; }
+.connector-content-stage { position: relative; min-height: 148px; }
+.connector-settings[hidden], .connector-loading[hidden] { display: none; }
+.connector-field { display: block; margin-top: 11px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 9px; color: #6d7c91; background: #f6f9fc; font-size: 12px; }
+.connector-field:first-child { margin-top: 0; }
+.connector-loading { min-height: 148px; display: grid; align-content: center; gap: 17px; padding: 0 2px 2px; }
+.connector-loading-copy { display: flex; align-items: center; gap: 11px; }
+.connector-loading-copy > i { width: 29px; height: 29px; flex: 0 0 29px; border: 3px solid #d8e8ff; border-top-color: var(--blue); border-radius: 50%; animation: connector-spin .8s linear infinite; }
+.connector-loading-copy strong, .connector-loading-copy small { display: block; }
+.connector-loading-copy strong { margin-bottom: 3px; color: var(--navy); font-size: 13px; }
+.connector-loading-copy small { color: #6d7c91; font-size: 10px; line-height: 1.35; }
+.connector-progress { width: 100%; height: 8px; overflow: hidden; border-radius: 999px; background: #e6eef8; }
+.connector-progress > i { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), #45b5e9); box-shadow: 0 0 12px rgba(7, 94, 229, .28); }
+.connector-progress-meta { display: flex; align-items: center; justify-content: space-between; color: #7890ad; font-size: 10px; font-weight: 700; }
+.connector-status { display: flex; align-items: center; gap: 8px; min-height: 18px; margin-top: 17px; color: #08785e; visibility: hidden; opacity: 0; transform: translateY(5px); font-size: 11px; font-weight: 800; transition: opacity .22s ease, transform .26s ease, visibility 0s linear .26s; }
+.connector-status.is-visible { visibility: visible; opacity: 1; transform: translateY(0); transition-delay: 0s; }
+.connector-status i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16, 185, 129, .12); }
+.connector-success-alert { position: absolute; z-index: 5; top: 13px; right: 13px; left: 13px; display: flex; align-items: center; gap: 11px; min-height: 70px; padding: 12px 14px; border: 1px solid #a7e7d1; border-radius: 14px; color: #08785e; background: rgba(244, 255, 251, .98); box-shadow: 0 16px 38px rgba(14, 111, 82, .2); visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(-15px) scale(.98); transition: opacity .22s ease, transform .28s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .28s; }
+.connector-success-alert.is-visible { visibility: visible; opacity: 1; transform: translateY(0) scale(1); transition-delay: 0s; }
+.connector-success-icon { display: grid; flex: 0 0 33px; width: 33px; height: 33px; place-items: center; border-radius: 50%; color: #fff; background: var(--green); font-size: 18px; font-weight: 900; }
+.connector-success-alert strong, .connector-success-alert small { display: block; }
+.connector-success-alert strong { margin-bottom: 3px; font-size: 13px; }
+.connector-success-alert small { color: #397c68; font-size: 10px; line-height: 1.35; }
+@keyframes connector-spin { to { transform: rotate(360deg); } }
+.automation-email { position: absolute; top: 46px; right: 24px; width: 86px; transform: rotate(8deg); filter: drop-shadow(0 18px 18px rgba(51,60,88,.16)); }
+.material-tag { position: absolute; left: 0; bottom: 0; padding: 7px 12px; border-radius: 999px; color: #a36a1d; background: #fff2d7; font-size: 11px; font-weight: 800; }
+.lead.compact { margin-bottom: 22px; font-size: 20px; line-height: 30.6px; }
+.automation-list { margin-top: 22px; }
+.automation-list li { padding: 23px 0; }
+.automation-list p { font-size: 16px; line-height: 23.1px; }
+.list-title { display: flex; align-items: center; gap: 14px; }
+.list-title h3 { margin: 0; }
+.list-title em { padding: 4px 10px; border-radius: 999px; color: var(--blue-deep); background: var(--blue-soft); font-style: normal; font-size: 11px; font-weight: 800; }
+.common-base { display: grid; gap: 7px; margin-top: 8px; padding-top: 22px; border-top: 1px solid var(--line); }
+.common-base strong { color: #7b899b; font-size: 11px; }
+.common-base span { color: var(--muted); font-size: 13px; }
+
+.marketplace { background: #fff; }
+.marketplace .section-heading { margin-bottom: 34px; }
+.tabs { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.tabs button, .tabs > span { min-width: 142px; min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 16px; font-weight: 800; line-height: 23.1px; cursor: pointer; }
+.tabs button[aria-selected="true"] { color: #fff; border-color: var(--navy); background: var(--navy); }
+.tabs > span { display: inline-flex; align-items: center; justify-content: center; min-width: 190px; color: #96a5b8; border-style: dashed; font-size: 14px; }
+.tab-panel { padding: 38px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); }
+.market-intro h3 { margin-bottom: 8px; font-size: 28px; line-height: 31.72px; }
+.market-intro p { color: var(--muted); font-size: 16px; line-height: 23.1px; }
+.journey-grid { display: grid; grid-template-columns: 1fr 48px 1fr 48px 1fr; align-items: center; margin-top: 28px; }
+.journey-grid article { position: relative; min-height: 250px; padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+.journey-grid article > span { position: absolute; right: 20px; top: 18px; color: var(--blue); font-size: 12px; font-weight: 900; }
+.journey-grid h4 { margin: 20px 0 6px; font-size: 20px; line-height: 23.18px; }
+.journey-grid p { margin: 0; color: var(--muted); font-size: 14px; line-height: 19.8px; }
+.journey-arrow { display: flex; align-items: center; justify-content: center; min-height: 46px; color: #9cadc1; }
+.journey-arrow svg { display: block; flex: 0 0 24px; width: 24px; height: 24px; }
+.journey-visual { height: 105px; display: flex; align-items: center; justify-content: center; border-radius: 13px; background: var(--surface); }
+.menu-visual { display: grid; grid-template-columns: repeat(2, 48px); gap: 8px; }
+.menu-visual i { height: 36px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.gps-visual i { display: grid; place-items: center; width: 64px; height: 64px; border: 16px solid #d7eaff; border-radius: 50%; color: #fff; background: var(--blue); font-style: normal; font-size: 8px; font-weight: 900; box-shadow: 0 0 0 9px #eaf4ff; }
+.success-visual { color: var(--green); background: #ecfbf5; font-size: 48px; font-weight: 800; }
+.form-visual { display: grid; grid-template-columns: 1fr 70px; gap: 8px; align-content: center; padding: 18px; }
+.form-visual i { grid-column: 1 / -1; height: 10px; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
+.form-visual b { height: 20px; border-radius: 10px; background: var(--blue); }
+.approval-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 16px; font-size: 9px; }
+.approval-visual i { grid-column: 1 / -1; padding: 7px; border: 1px solid var(--line); border-radius: 7px; background: #fff; font-style: normal; }
+.approval-visual b, .approval-visual em { padding: 5px; border-radius: 7px; color: #fff; background: var(--green); font-style: normal; text-align: center; }
+.approval-visual em { color: var(--muted); border: 1px solid var(--line); background: #fff; }
+.admin-strip { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 26px; padding: 24px 30px; border-radius: 17px; color: #fff; background: var(--navy); }
+.admin-strip small { color: #81b8f7; font-weight: 800; }
+.admin-strip h4 { margin: 6px 0; font-size: 20px; }
+.admin-strip p { margin: 0; color: #b9c7d8; font-size: 12px; }
+.mini-table { width: 330px; padding: 15px; border-radius: 11px; color: var(--navy); background: #fff; }
+.mini-table b { display: block; margin-bottom: 10px; font-size: 11px; }
+.mini-table span { display: block; height: 1px; margin: 8px 0; background: var(--line); }
+.mini-table em { display: block; color: #a36a1d; font-style: normal; font-size: 10px; text-align: center; }
+.material-note { max-width: 310px; padding: 9px 13px; border: 1px dashed rgba(255,255,255,.38); border-radius: 10px; color: #ffd294; font-size: 11px; font-weight: 800; }
+
+.security { background: var(--surface); }
+.security-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.security-cards article { position: relative; min-height: 300px; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+.security-cards article > span { display: inline-grid; place-items: center; min-width: 48px; height: 34px; padding: 0 8px; border-radius: 9px; color: var(--blue); background: var(--blue-soft); font-size: 11px; font-weight: 900; }
+.security-cards h3 { margin: 32px 0 15px; font-size: 24px; line-height: 25.62px; }
+.security-cards p { color: var(--muted); font-size: 16px; line-height: 24px; letter-spacing: 1px; }
+.shield-icon, .tenant-icon, .log-icon { position: absolute; right: 26px; top: 27px; width: 70px; height: 70px; }
+.shield-icon { display: grid; place-items: center; border: 4px solid #d7eaff; border-radius: 24px 24px 32px 32px; color: var(--green); background: #eef8ff; font-size: 30px; font-weight: 900; }
+.tenant-icon { display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 5px; }
+.tenant-icon i { height: 45px; border-radius: 9px 9px 3px 3px; background: linear-gradient(180deg, var(--cyan), var(--blue)); }
+.tenant-icon i:nth-child(2) { height: 66px; }
+.log-icon { padding: 14px; border-radius: 18px; background: #eef6ff; }
+.log-icon i { display: block; height: 7px; margin: 8px 0; border-radius: 4px; background: var(--blue); }
+.log-icon i:nth-child(2) { width: 80%; background: var(--cyan); }
+.log-icon i:nth-child(3) { width: 60%; background: var(--mint); }
+.asset-callout { width: fit-content; margin: 40px auto 0; padding: 10px 16px; border: 1px dashed #d7b66f; border-radius: 999px; color: #8b6424; background: #fff8e9; font-size: 12px; }
+.asset-callout span { margin-right: 8px; font-weight: 900; }
+
+.demo-section { color: #fff; background: radial-gradient(circle at 15% 15%, rgba(28,112,210,.24), transparent 34%), var(--navy-deep); }
+.demo-grid { display: grid; grid-template-columns: .84fr 1.16fr; gap: 72px; align-items: start; }
+.eyebrow.light { color: #78b5ff; }
+.faq-block h2 { margin: 0 0 62px; font-size: clamp(40px, 4vw, 52px); line-height: 62.464px; letter-spacing: 0; }
+.faq-list { border-top: 1px solid rgba(255,255,255,.16); }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,.16); }
+.faq-item button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; border: 0; color: #fff; background: transparent; text-align: left; cursor: pointer; font-size: 20px; font-weight: 800; line-height: 1.24; }
+.faq-item button i { color: #78b5ff; font-style: normal; font-size: 22px; }
+.faq-answer { padding: 0 30px 24px 0; color: #aebed0; font-size: 16px; line-height: 1.34; }
+.faq-answer em { display: inline-block; padding: 6px 10px; border: 1px dashed rgba(255,210,148,.46); border-radius: 8px; color: #ffd294; font-style: normal; font-weight: 800; }
+.demo-card { padding: 46px; border-radius: 26px; color: var(--navy); background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.25); }
+.demo-card h2 { margin-bottom: 20px; font-size: 44px; line-height: 47.58px; letter-spacing: 0; }
+.demo-card > p { margin-bottom: 30px; color: var(--muted); font-size: 16px; line-height: 21.45px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 21px 18px; }
+.demo-card label span { display: block; margin-bottom: 7px; color: #6e7d91; font-size: 14px; font-weight: 800; line-height: 18.15px; }
+.demo-card label .required-field::before { content: "*"; margin-right: 4px; color: #ff5900; }
+.demo-card input, .demo-card select, .demo-card textarea { width: 100%; border: 1px solid var(--line); border-radius: 9px; color: var(--navy); background: #fff; outline: 0; transition: border-color .2s ease, box-shadow .2s ease; }
+.demo-card input, .demo-card select { height: 46px; padding: 0 12px; }
+.demo-card textarea { resize: vertical; min-height: 90px; padding: 11px 12px; }
+.demo-card input:focus, .demo-card select:focus, .demo-card textarea:focus { border-color: #8bbcf5; box-shadow: 0 0 0 4px rgba(12,105,223,.10); }
+.full-field { display: block; margin-top: 21px; }
+.form-submit { width: 100%; margin-top: 22px; }
+.form-status { min-height: 20px; margin-top: 10px; color: #9a661d; font-size: 11px; font-weight: 700; text-align: center; }
+
+.site-footer { color: #fff; background: #041225; }
+.footer-inner { min-height: 104px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand strong { color: #fff; font-size: 19px; letter-spacing: -.04em; }
+.footer-brand strong span { color: #59b9e5; }
+.footer-brand i { width: 1px; height: 25px; background: rgba(255,255,255,.18); }
+.footer-brand img { width: 112px; height: 54px; object-fit: contain; object-position: left center; filter: brightness(0) invert(1); }
+.footer-inner span { color: #8091a7; font-size: 11px; }
+.footer-inner span:last-child { text-align: right; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1080px) {
+  .desktop-nav { gap: 18px; }
+  .desktop-nav a { font-size: 13px; }
+  .split-grid { gap: 50px; }
+  .hero-grid { grid-template-columns: .95fr 1.05fr; }
+  .hero-visual { min-height: 490px; }
+  .browser-shot { height: 330px; }
+  .phone-frame { width: 160px; height: 316px; }
+  .flow-stage { grid-template-columns: minmax(0, 1.5fr) 34px minmax(0, 1fr) 34px minmax(0, 1.5fr); padding: 28px; gap: 12px; }
+  .connector-card { width: 335px; }
+  .journey-grid { grid-template-columns: 1fr 30px 1fr 30px 1fr; }
+}
+
+@media (max-width: 920px) {
+  .desktop-nav, .header-inner > .button-small { display: none; }
+  .menu-toggle { display: block; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-nav { position: fixed; inset: 79px 0 auto; display: grid; padding: 18px 24px 28px; background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 20px 40px rgba(16,37,63,.12); transform: translateY(-130%); transition: transform .25s ease; }
+  .mobile-nav.open { transform: translateY(0); }
+  .mobile-nav a { padding: 13px 0; border-bottom: 1px solid #eef2f6; font-weight: 800; }
+  .hero { padding-top: 76px; }
+  .hero-grid, .split-grid, .automation-grid, .demo-grid { grid-template-columns: 1fr; }
+  .hero-copy { max-width: 680px; }
+  .hero-visual { width: min(100%, 690px); margin: 10px auto 0; min-height: 550px; }
+  .browser-shot { height: 385px; }
+  .value-cards { grid-template-columns: 1fr; }
+  .value-card { min-height: 0; }
+  .flow-stage { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: auto; }
+  .flow-stage > * { grid-column: 1; grid-row: auto; }
+  .flow-arrow { width: 2px; height: 38px; margin: 0 auto; background: #b5c4d5; }
+  .flow-arrow::after { right: -4px; top: auto; bottom: 0; transform: rotate(135deg); }
+  .flow-arrow span { inset: -4px auto auto -6.5px; }
+  .flow-caption { min-height: 0; }
+  .flow-caption-source span { text-align: center; }
+  .flow-caption span { white-space: normal; }
+  .source-grid, .people-grid { grid-template-columns: repeat(3, 1fr); }
+  .people-grid div:last-child { grid-column: auto; }
+  .flow-core { width: 280px; min-height: 190px; margin: auto; }
+  .automation-visual { width: min(100%, 620px); margin: 0 auto; }
+  .marketplace .section-heading { max-width: 760px; }
+  .journey-grid { grid-template-columns: 1fr; gap: 12px; }
+  .journey-arrow svg { transform: rotate(90deg); }
+  .journey-grid article { min-height: 230px; }
+  .admin-strip { align-items: stretch; flex-direction: column; }
+  .mini-table { width: 100%; }
+  .security-cards { grid-template-columns: 1fr; }
+  .security-cards article { min-height: 250px; }
+  .demo-grid { gap: 52px; }
+}
+
+@media (max-width: 640px) {
+  .container { width: min(calc(100% - 32px), var(--container)); }
+  .section { padding: 78px 0; }
+  .header-inner { height: 68px; }
+  .brand { width: 205px; gap: 9px; }
+  .coolbe-wordmark { font-size: 17px; }
+  .brand img { width: 90px; height: 40px; }
+  .mobile-nav { top: 69px; }
+  .hero { min-height: auto; padding: 66px 0 72px; }
+  .eyebrow { margin-bottom: 22px; font-size: 11px; }
+  .hero h1 { font-size: 43px; }
+  .lead { font-size: 16px; }
+  .desktop-break { display: none; }
+  .hero-actions { align-items: stretch; flex-direction: column; gap: 17px; }
+  .text-link { padding-left: 4px; }
+  .dual-core { gap: 15px; }
+  .dual-core div + div { padding-left: 15px; }
+  .hero-visual { min-height: 430px; margin-top: 28px; }
+  .browser-frame { left: 0; right: 7px; top: 40px; }
+  .browser-bar { height: 38px; }
+  .browser-shot { height: 270px; }
+  .phone-frame { right: 0; bottom: 0; width: 130px; height: 258px; padding: 6px; border-width: 5px; border-radius: 24px; }
+  .float-chip { display: none; }
+  .scene-badge { min-width: auto; padding: 6px 10px; font-size: 10px; }
+  .scene-office { left: 8px; }
+  .scene-store { right: 6px; }
+  .scene-warehouse { left: 52px; bottom: 16px; }
+  .scene-field { right: 0; bottom: 38px; }
+  .friction-board { min-height: 0; padding: 28px 22px; }
+  .warning-card { font-size: 12px; }
+  .section-copy h2, .section-heading h2 { font-size: 34px; }
+  .number-list p br, .value-card p br, .capability-card p br, .security-cards p br, .automation-list p br { display: none; }
+  .section-heading.centered { text-align: left; }
+  .section-heading.centered .eyebrow { justify-content: flex-start; }
+  .value-card { padding: 25px; }
+  .flow-stage { padding: 20px; }
+  .source-grid, .people-grid { grid-template-columns: repeat(2, 1fr); }
+  .source-grid article, .people-grid article { padding: 8px; font-size: 11px; }
+  .capability-grid { grid-template-columns: 1fr; }
+  .capability-card { padding: 24px 22px 0; }
+  .capability-card > p { min-height: 0; }
+  .automation-visual { min-height: 510px; }
+  .phone-large { left: 0; width: 205px; height: 420px; border-width: 6px; }
+  .connector-card { right: -4px; bottom: 42px; width: 260px; padding: 18px; }
+  .automation-email { right: 0; width: 64px; }
+  .material-tag { max-width: 230px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tabs { align-items: stretch; flex-wrap: wrap; }
+  .tabs button { flex: 1 1 40%; }
+  .tabs > span { flex: 1 1 100%; min-width: 0; }
+  .tab-panel { padding: 24px 16px; }
+  .market-intro h3 { font-size: 22px; }
+  .admin-strip { padding: 22px; }
+  .asset-callout { border-radius: 14px; text-align: center; }
+  .demo-card { padding: 30px 20px; }
+  .demo-card h2 { font-size: 33px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; text-align: center; }
+  .footer-brand { justify-content: center; }
+  .footer-inner span:last-child { text-align: center; }
+}
+
+@media (max-width: 420px) {
+  .hero h1 { font-size: 37px; }
+  .section-copy h2, .section-heading h2 { font-size: 31px; }
+  .phone-large { width: 184px; height: 380px; }
+  .connector-card { width: 230px; }
+  .connector-field { font-size: 10px; }
+}
+
+/* Figma sync: WorksHub+ 官網｜Desktop 1280｜可編輯 (node 3:2) */
+.section { padding: 80px 0; }
+.hero {
+  min-height: auto;
+  padding: 80px 0;
+  background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+}
+.hero-grid { position: relative; display: block; height: 544px; }
+.hero-copy { position: absolute; top: 28px; left: 0; width: 507px; }
+.brand-crop { position: relative; width: 193px; height: 67px; overflow: hidden; }
+.brand-crop img { position: absolute; top: -25.12%; left: 0; width: 100%; height: 150.72%; max-width: none; }
+.hero-copy > .brand-crop { margin-top: 30px; }
+.hero h1 {
+  margin: 0;
+  font-size: 64px;
+  line-height: 68.71px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.hero h1 em { color: var(--blue); font-style: normal; }
+.hero .lead { margin: 28px 0 0; color: var(--muted); font-size: 18px; line-height: 1.8; }
+.hero-actions { margin: 34px 0 0; }
+.hero-showcase { position: absolute; top: 38px; left: 496px; width: 744px; height: 545px; }
+.hero-admin-image { position: absolute; top: 0; left: 0; width: 721px; height: 462px; max-width: none; object-fit: cover; }
+.hero-mobile-image { position: absolute; top: 146px; left: 425px; width: 319px; height: 399px; max-width: none; object-fit: cover; filter: drop-shadow(4px 18px 24px rgba(171,183,203,.15)); }
+.showcase-logo { position: absolute; top: 54px; left: 32px; z-index: 2; width: 110px; height: 38px; }
+.scene-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  min-width: 104px;
+  padding: 3px 14px;
+  color: var(--blue-deep);
+  font-size: 14px;
+}
+.scene-badge img { width: 29px; height: 29px; max-width: none; object-fit: cover; }
+.scene-badge i { flex: 0 0 auto; margin: 0; }
+.scene-office { top: -42px; left: 143px; }
+.scene-store { top: -8px; right: 18px; }
+.scene-warehouse { bottom: 69px; left: 211px; }
+.scene-field { right: 6px; bottom: 126px; }
+.float-chat { left: -5px; bottom: 125px; height: 40px; padding: 8px; font-size: 14px; }
+.float-chip img { width: 27px; height: 27px; border-radius: 7px; }
+
+.friction { padding: 80px 0; background: var(--surface); }
+.friction .split-grid { grid-template-columns: 541px 541.46px; gap: 40px; width: min(calc(100% - 48px), 1122.46px); }
+.friction-board { min-width: 0; min-height: 506px; height: 506px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.friction .section-copy { min-width: 0; }
+.friction-board h3 { margin-bottom: 24px; }
+.friction .eyebrow > span { display: none; }
+.friction .eyebrow { margin-bottom: 30px; }
+.friction .number-list { margin-top: 50px; }
+
+.section-copy h2, .section-heading h2 { font-size: 44px; line-height: 53.094px; letter-spacing: 0; }
+.section-heading { margin-bottom: 54px; }
+.section-heading.centered { max-width: 920px; }
+.section-heading .eyebrow { justify-content: center; margin-bottom: 24px; }
+.value-section { padding: 80px 0; }
+.value-card { min-height: 310px; }
+.value-icon { width: 80px; height: 80px; max-width: none; object-fit: cover; filter: drop-shadow(0 8px 26px rgba(6,78,169,.20)); }
+
+.how-it-works { padding: 80px 0; }
+.how-it-works .section-heading { margin-bottom: 54px; }
+.how-it-works .section-heading .eyebrow { margin-bottom: 24px; }
+
+.capabilities { padding: 80px 0; }
+.capabilities .section-heading { margin-bottom: 0; }
+.capability-grid { margin-top: 56px; }
+.capability-card { min-height: 197px; padding: 28px 30px; }
+.capability-card:first-child { min-height: 207px; }
+.capability-card.featured { border-color: var(--line); background: #fff; }
+.cap-icon { width: 64px; height: 64px; border-radius: 17px; background: var(--blue-soft); }
+.cap-icon img { width: 44px; height: 44px; max-width: none; }
+.capability-card > p { min-height: 85px; margin-top: 28px; }
+
+.automation { min-height: auto; padding: 80px 0; }
+.automation-grid { grid-template-columns: 582.75px 527.25px; gap: 90px; }
+.automation-visual { min-height: 610px; }
+.automation-phone-shot { position: absolute; top: -115px; left: -16px; width: 539px; height: 674px; max-width: none; object-fit: cover; }
+.connector-card { top: 253px; right: 0; bottom: auto; width: 360px; }
+.connector-head button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 106px; }
+.connector-head button img { width: 14px; height: 14px; }
+.connector-field { display: flex; align-items: center; gap: 4px; }
+.connector-field img { width: 16px; height: 16px; }
+.automation .section-copy { align-self: center; }
+.automation .section-copy h2 { margin-bottom: 22px; }
+.automation .number-list { margin-top: 22px; }
+
+.marketplace { padding: 80px 0; }
+.marketplace .section-heading { max-width: 1200px; margin-bottom: 0; }
+.marketplace .tabs { justify-content: center; margin: 0; padding-top: 34px; }
+.marketplace .tab-panel { margin-top: 24px; }
+.journey-grid { margin-top: 24px; }
+.journey-grid article { height: 250px; min-height: 250px; padding: 24px; overflow: hidden; }
+.journey-grid article > span { display: none; }
+.journey-shot { position: relative; width: 100%; height: 143px; overflow: hidden; border-radius: 13px; background: var(--surface); }
+.journey-shot > img:first-child { position: absolute; max-width: none; }
+.journey-shot-entry > img:first-child { top: -65px; left: -33px; width: 351px; height: 438px; }
+.journey-shot-location > img:first-child { top: -155px; left: 19px; width: 248px; height: 309px; }
+.journey-shot-result > img:first-child { top: -46px; left: 29px; width: 219px; height: 273px; }
+.approval-shot-application > img:first-child { top: -237px; left: calc(50% - 156px); width: 313px; height: 391px; }
+.approval-shot-application::after { content: ""; position: absolute; top: 0; left: 56px; width: 153px; height: 31px; background: #f5f7fb; }
+.approval-shot-review > img:first-child { top: -47px; left: calc(50% - 124px); width: 248px; height: 310px; }
+.approval-shot-result > img:first-child { top: -34px; left: calc(50% - 98px); width: 200px; height: 250px; }
+.journey-avatar { position: absolute; top: 76px; left: 30px; width: 56px; height: 56px; }
+.journey-grid h4 { display: flex; gap: 8px; margin: 16px 0 6px; }
+.journey-grid h4 span { color: var(--mint); }
+
+.security { padding: 80px 0; }
+.security .section-heading { margin-bottom: 54px; }
+.security-cards article { display: flex; flex-direction: column; gap: 16px; min-height: 300px; height: 300px; padding: 24px; }
+.security-icon { width: 64px; height: 64px; max-width: none; object-fit: contain; }
+.security-icon-crop { object-fit: cover; }
+.security-cards h3 { margin: 0; font-size: 24px; }
+.security-cards p { margin: 0; }
+
+.demo-section { min-height: auto; padding: 80px 0; background: radial-gradient(circle at 15% 15%, rgba(28,112,210,.24), transparent 34%), #042a60; }
+.demo-grid { grid-template-columns: 473.76px 654.24px; gap: 72px; }
+.faq-block h2 { font-size: 44px; line-height: 62.464px; }
+.demo-card { min-height: 855px; padding: 46px; }
+.demo-card textarea { min-height: 130px; }
+.site-footer { background: #052249; }
+.footer-brand img { filter: none; }
+
+@media (max-width: 1248px) {
+  .container { width: min(calc(100% - 48px), 1200px); }
+  .hero-showcase { left: 42%; transform: scale(.9); transform-origin: top left; }
+  .friction .split-grid, .automation-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 54px; }
+  .demo-grid { grid-template-columns: .84fr 1.16fr; }
+}
+
+@media (max-width: 920px) {
+  .section { padding: 76px 0; }
+  .hero { min-height: auto; padding: 54px 0 70px; }
+  .hero-grid { display: grid; height: auto; }
+  .hero-copy { position: relative; top: auto; left: auto; width: 100%; max-width: 620px; }
+  .hero-copy > .brand-crop { margin-top: 0; }
+  .hero h1 { white-space: normal; }
+  .hero-showcase { position: relative; top: auto; left: auto; width: 100%; height: 520px; margin-top: 30px; transform: none; }
+  .hero-admin-image { top: 20px; width: min(100%, 721px); height: auto; }
+  .hero-mobile-image { top: 145px; right: -20px; left: auto; width: 42%; height: auto; }
+  .showcase-logo { top: 64px; }
+  .scene-office { top: -18px; left: 20%; }
+  .scene-store { top: 22px; right: 2%; }
+  .scene-warehouse { bottom: 28px; left: 25%; }
+  .scene-field { right: 0; bottom: 92px; }
+  .float-chat { left: 0; bottom: 92px; }
+  .friction .split-grid { grid-template-columns: minmax(0, 1fr); }
+  .automation-grid, .demo-grid { grid-template-columns: 1fr; }
+  .friction-board { width: 100%; max-width: 620px; margin: auto; }
+  .automation { padding: 76px 0; }
+  .automation-visual { width: min(100%, 620px); min-height: 570px; margin: auto; }
+  .automation-phone-shot { top: -72px; left: -10px; }
+  .connector-card { top: 245px; }
+  .marketplace .section-heading { text-align: center; }
+  .marketplace .section-heading .eyebrow { justify-content: center; }
+  .demo-section { min-height: auto; padding: 76px 0; }
+  .demo-card { min-height: 0; }
+}
+
+@media (max-width: 640px) {
+  .container { width: min(calc(100% - 32px), 1200px); }
+  .hero h1 { font-size: 43px; line-height: 1.074; }
+  .brand-crop { width: 154px; height: 54px; }
+  .hero .lead { font-size: 16px; }
+  .hero-showcase { height: 360px; }
+  .hero-mobile-image { top: 100px; right: -10px; }
+  .showcase-logo { top: 46px; left: 14px; width: 82px; height: 28px; }
+  .scene-badge { height: 34px; min-width: auto; padding: 3px 9px; font-size: 11px; }
+  .scene-badge img { width: 24px; height: 24px; }
+  .scene-office { top: -8px; left: 12%; }
+  .scene-store { top: 20px; }
+  .scene-warehouse { bottom: 18px; left: 18%; }
+  .scene-field { bottom: 70px; }
+  .float-chat { bottom: 65px; font-size: 11px; }
+  .friction-board { height: auto; min-height: 0; padding: 0; }
+  .friction-slide { padding-inline: 24px; }
+  .section-copy h2, .section-heading h2 { font-size: 34px; line-height: 1.207; }
+  .section-heading.centered { text-align: left; }
+  .section-heading.centered .eyebrow { justify-content: flex-start; }
+  .how-it-works { padding: 76px 0; }
+  .capability-card { min-height: 0; }
+  .automation-visual { min-height: 480px; }
+  .automation-phone-shot { top: -55px; left: -90px; width: 440px; height: auto; }
+  .connector-card { top: 205px; right: -4px; width: 270px; padding: 18px; }
+  .connector-head { gap: 10px; margin-bottom: 20px; }
+  .connector-head h3 { font-size: 18px; }
+  .connector-head button { min-width: 98px; min-height: 40px; padding-inline: 10px; }
+  .connector-content-stage, .connector-loading { min-height: 136px; }
+  .connector-field { padding-inline: 10px; font-size: 11px; }
+  .connector-success-alert { top: 9px; right: 9px; left: 9px; }
+  .marketplace .section-heading { text-align: left; }
+  .marketplace .section-heading .eyebrow { justify-content: flex-start; }
+  .journey-grid article { height: 250px; }
+  .journey-shot-entry > img:first-child { left: calc(50% - 176px); }
+  .journey-shot-location > img:first-child { left: calc(50% - 124px); }
+  .journey-shot-result > img:first-child { left: calc(50% - 110px); }
+  .approval-shot-application > img:first-child { left: calc(50% - 156px); }
+  .approval-shot-application::after { left: calc(50% - 91px); }
+  .approval-shot-review > img:first-child { left: calc(50% - 124px); }
+  .approval-shot-result > img:first-child { left: calc(50% - 98px); }
+  .security-cards article { height: auto; min-height: 250px; }
+  .demo-card { padding: 30px 20px; }
+  .faq-block h2 { font-size: 42px; }
+}
+
+/* Motion layer: entrance order, scroll parallax, and consistent card feedback. */
+.hero-media-layer,
+.hero-detail-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-showcase.parallax-active .hero-media-layer,
+.hero-showcase.parallax-active .hero-detail-layer { will-change: transform; }
+.hero-web-layer { transform: translate3d(0, var(--hero-parallax-web, 0px), 0); }
+.hero-phone-layer { transform: translate3d(0, var(--hero-parallax-phone, 0px), 0); }
+.hero-detail-layer { transform: translate3d(0, var(--hero-parallax-detail, 0px), 0); }
+
+.motion-enabled .hero-admin-image,
+.motion-enabled .hero-mobile-image,
+.motion-enabled .hero-detail-layer > * {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(.985);
+  transition: opacity .72s ease, transform .82s cubic-bezier(.22, 1, .36, 1);
+}
+.motion-enabled .hero-showcase.is-visible .hero-admin-image {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition-delay: 1.25s;
+}
+.motion-enabled .hero-showcase.is-visible .hero-mobile-image {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition-delay: 1.68s;
+}
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > :nth-child(1) { transition-delay: 1.88s; }
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > :nth-child(2) { transition-delay: 1.94s; }
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > :nth-child(3) { transition-delay: 2s; }
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > :nth-child(4) { transition-delay: 2.06s; }
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > :nth-child(5) { transition-delay: 2.12s; }
+.motion-enabled .hero-showcase.is-visible .hero-detail-layer > :nth-child(6) { transition-delay: 2.18s; }
+
+@keyframes hero-copy-enter {
+  from { opacity: 0; transform: translate3d(0, 30px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.motion-enabled .hero-copy > .brand-crop { animation: hero-copy-enter .62s cubic-bezier(.22, 1, .36, 1) .05s both; }
+.motion-enabled .hero h1 { animation: hero-copy-enter .82s cubic-bezier(.22, 1, .36, 1) .15s both; }
+.motion-enabled .hero .lead { animation: hero-copy-enter .7s cubic-bezier(.22, 1, .36, 1) .45s both; }
+.motion-enabled .hero-actions { animation: hero-copy-enter .65s cubic-bezier(.22, 1, .36, 1) .62s both; }
+
+@keyframes hero-media-enter {
+  from { opacity: 0; transform: translate3d(0, 28px, 0) scale(.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+.motion-enabled .hero-admin-image { animation: hero-media-enter .82s cubic-bezier(.22, 1, .36, 1) 1.25s both; }
+.motion-enabled .hero-mobile-image { animation: hero-media-enter .82s cubic-bezier(.22, 1, .36, 1) 1.68s both; }
+.motion-enabled .hero-detail-layer > * { animation: hero-media-enter .68s cubic-bezier(.22, 1, .36, 1) both; }
+.motion-enabled .hero-detail-layer > :nth-child(1) { animation-delay: 1.88s; }
+.motion-enabled .hero-detail-layer > :nth-child(2) { animation-delay: 1.94s; }
+.motion-enabled .hero-detail-layer > :nth-child(3) { animation-delay: 2s; }
+.motion-enabled .hero-detail-layer > :nth-child(4) { animation-delay: 2.06s; }
+.motion-enabled .hero-detail-layer > :nth-child(5) { animation-delay: 2.12s; }
+.motion-enabled .hero-detail-layer > :nth-child(6) { animation-delay: 2.18s; }
+
+.motion-card,
+.flow-card {
+  --hover-scale: 1.035;
+  position: relative;
+  z-index: 0;
+  outline: 0;
+  transform-origin: center;
+  transition: opacity .65s ease, transform .38s cubic-bezier(.22, 1, .36, 1), box-shadow .38s ease, border-color .38s ease;
+}
+.capability-card,
+.security-cards .motion-card { --hover-scale: 1.025; }
+.flow-card { --hover-scale: 1.045; }
+.motion-card:focus-visible,
+.flow-card:focus-visible {
+  z-index: 5;
+  outline: 2px solid #7cc5ff;
+  outline-offset: 3px;
+}
+.motion-card.reveal.visible:focus-visible,
+.flow-sequence.visible .flow-card:focus-visible {
+  transform: translateY(-7px) scale(var(--hover-scale));
+  border-color: #a9cef6;
+  box-shadow: 0 22px 46px rgba(9, 46, 88, .18);
+}
+
+/* 兩個圖文段落依序浮入；每一項由 JavaScript 指派 0.6 秒間隔。 */
+.motion-enabled .timed-sequence .sequence-item {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity .76s ease var(--sequence-delay, 0ms), transform .84s cubic-bezier(.22, 1, .36, 1) var(--sequence-delay, 0ms);
+}
+.motion-enabled .timed-sequence.sequence-visible .sequence-item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.motion-enabled .automation .connector-card.sequence-item {
+  transform: translate3d(0, calc(var(--connector-parallax, 0px) + 26px), 0);
+}
+.motion-enabled .automation.sequence-visible .connector-card.sequence-item {
+  transform: translate3d(0, var(--connector-parallax, 0px), 0);
+}
+.motion-enabled .timed-sequence.sequence-complete .sequence-item { transition-delay: 0ms; }
+.automation.parallax-active .connector-card { will-change: transform; }
+
+/* Bot 流程在面板出現時由左至右依序浮入。 */
+.motion-enabled .journey-step {
+  opacity: 0;
+  transform: translate3d(-20px, 0, 0);
+  transition: opacity .52s ease var(--journey-delay, 0ms), transform .62s cubic-bezier(.22, 1, .36, 1) var(--journey-delay, 0ms);
+}
+.motion-enabled .journey-visible .journey-step {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.motion-enabled .flow-heading > *,
+.motion-enabled .flow-step {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0) scale(.985);
+  transition: opacity .48s ease var(--flow-delay, 0ms), transform .6s cubic-bezier(.22, 1, .36, 1) var(--flow-delay, 0ms), box-shadow .35s ease, border-color .35s ease;
+}
+.motion-enabled .flow-heading.visible > *,
+.motion-enabled .flow-sequence.visible .flow-step {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.motion-enabled .flow-heading > :nth-child(1) { --flow-delay: 0ms; }
+.motion-enabled .flow-heading > :nth-child(2) { --flow-delay: 110ms; }
+.motion-enabled .flow-heading > :nth-child(3) { --flow-delay: 220ms; }
+
+.motion-enabled .flow-sequence.visible .people-grid article.message-open {
+  z-index: 6;
+  transform: translateY(-7px) scale(var(--hover-scale));
+  border-color: #a9cef6;
+  box-shadow: 0 22px 46px rgba(9, 46, 88, .18);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-card.reveal.visible:hover,
+  .flow-sequence.visible .flow-card:hover {
+    z-index: 5;
+    transform: translateY(-7px) scale(var(--hover-scale));
+    border-color: #a9cef6;
+    box-shadow: 0 22px 46px rgba(9, 46, 88, .18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media-layer,
+  .hero-detail-layer { transform: none !important; will-change: auto; }
+  .motion-enabled .hero-admin-image,
+  .motion-enabled .hero-mobile-image,
+  .motion-enabled .hero-detail-layer > *,
+  .motion-enabled .hero-copy > .brand-crop,
+  .motion-enabled .hero h1,
+  .motion-enabled .hero .lead,
+  .motion-enabled .hero-actions,
+  .motion-enabled .timed-sequence .sequence-item,
+  .motion-enabled .automation .connector-card.sequence-item,
+  .motion-enabled .journey-step,
+  .motion-enabled .flow-heading > *,
+  .motion-enabled .flow-step { opacity: 1; transform: none; }
+  .motion-card.reveal.visible:hover,
+  .motion-card.reveal.visible:focus-visible,
+  .flow-sequence.visible .flow-card:hover,
+  .flow-sequence.visible .flow-card:focus-visible { transform: none; }
+}
+
+/* Mobile layout sync from Figma mobile frame (125:110), 2026-10-01. */
+.mobile-break { display: none; }
+@media (max-width: 640px) {
+  .mobile-break { display: inline; }
+  .mobile-hide { display: none; }
+
+  /* Centered section headings */
+  .section-heading.centered,
+  .marketplace .section-heading,
+  .section-copy > h2,
+  .section-copy > p,
+  .faq-block h2 { text-align: center; }
+  .section-heading.centered .eyebrow,
+  .marketplace .section-heading .eyebrow,
+  .section-copy > .eyebrow,
+  .faq-block .eyebrow { justify-content: center; }
+
+  /* Section spacing */
+  .friction, .value-section, .how-it-works { padding: 80px 0; }
+  .automation { padding: 76px 0 80px; }
+
+  /* Friction: copy first, then centered board; slide fits the viewport */
+  .friction .section-copy { order: -1; }
+  .board-kicker, .friction-board h3 { text-align: center; }
+  .friction-slide { min-width: 0; padding-inline: 10px; }
+
+  /* How it works: compact core card */
+  .flow-core { min-height: 0; padding: 16px 18px; }
+  .flow-core > img { width: 188px; height: 95px; margin: 15px auto -5px; }
+
+  /* Automation: full phone shot with a smaller connector card */
+  .automation-phone-shot { top: -28px; left: 7px; width: 357px; }
+  .connector-card { zoom: .79; top: 333px; right: auto; left: 143px; }
+}
+
+/* ===== English version: overflow-safe overrides =====
+   English copy is longer than Chinese, so fixed heights become min-heights,
+   nowrap text is allowed to wrap, and pixel line-heights become ratios. */
+body { font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif; overflow-wrap: break-word; }
+h1, h2, h3, h4 { text-wrap: balance; }
+p, .faq-answer { text-wrap: pretty; }
+
+/* Hero: copy flows in the grid so a taller headline pushes the section down */
+.hero-grid { height: auto; min-height: 544px; }
+.hero-copy { position: relative; top: auto; left: auto; width: 470px; max-width: 100%; padding-top: 28px; }
+.hero h1 { font-size: 50px; line-height: 1.1; white-space: normal; letter-spacing: -.01em; }
+.scene-badge, .float-chip { white-space: nowrap; }
+.hero-actions .button { text-align: center; }
+
+/* Friction board + carousel: grow with the text */
+.friction-board, .friction-board.sequence-visual { height: auto; min-height: 506px; }
+.friction-board h3 { line-height: 1.2; }
+.board-kicker { line-height: 1.4; }
+.friction-carousel { height: auto; min-height: 426px; }
+.friction-viewport, .friction-track { height: auto; }
+.friction-track { align-items: stretch; }
+.friction-slide { height: auto; padding-bottom: 56px; }
+.friction-slide-content h4 { line-height: 1.25; letter-spacing: 0; text-align: center; }
+.friction-slide-content p { width: 360px; line-height: 1.5; text-align: center; }
+
+/* Loose line-heights so wrapped lines never collide */
+.number-list h3 { line-height: 1.25; }
+.number-list p, .automation-list p, .value-card p, .capability-card > p,
+.market-intro p, .security-cards p, .demo-card > p { line-height: 1.55; }
+.security-cards p { letter-spacing: 0; }
+.value-card h3, .cap-head h3, .security-cards h3, .journey-grid h4 { line-height: 1.25; }
+.market-intro h3 { line-height: 1.25; }
+.journey-grid p { line-height: 1.45; }
+.lead.compact { line-height: 1.5; }
+.demo-card h2 { line-height: 1.15; }
+.faq-block h2 { line-height: 1.2; }
+.demo-card label span { line-height: 1.3; }
+.section-copy h2, .section-heading h2 { line-height: 1.2; }
+
+/* Cards: fixed heights become minimums */
+.value-card { min-height: 310px; height: auto; }
+.journey-grid article { height: auto; min-height: 250px; }
+.security-cards article { height: auto; min-height: 300px; }
+.capability-card > p { min-height: 0; }
+
+/* How it works */
+.flow-caption strong { line-height: 1.25; }
+.flow-caption span { white-space: normal; line-height: 1.4; }
+.source-grid strong, .people-grid strong { line-height: 1.2; }
+.source-grid article, .people-grid article { height: auto; }
+.flow-core-rules { line-height: 1.35; }
+.flow-core-rules span { white-space: normal; align-items: flex-start; padding-block: 6px; }
+.flow-core-rules span img { margin-top: 3px; }
+.role-message { letter-spacing: .02em; }
+
+/* Connector card */
+.connector-head { flex-wrap: wrap; gap: 10px; }
+.connector-head h3 { font-size: 18px; }
+.connector-head button { width: auto; min-width: 106px; white-space: nowrap; }
+.connector-field { align-items: flex-start; line-height: 1.35; }
+.connector-field img { flex: 0 0 16px; }
+
+/* Lists, tabs, FAQ, footer */
+.list-title { flex-wrap: wrap; gap: 8px 14px; }
+.list-title em { white-space: nowrap; }
+.tabs { flex-wrap: wrap; justify-content: center; }
+.tabs button, .tabs > span { white-space: nowrap; }
+.faq-item button { line-height: 1.3; }
+.faq-answer { line-height: 1.5; }
+.footer-inner span { line-height: 1.5; }
+
+@media (max-width: 1248px) {
+  .hero-copy { width: 40%; }
+  .hero h1 { font-size: clamp(38px, 3.9vw, 48px); }
+}
+
+@media (min-width: 921px) and (max-width: 1180px) {
+  .hero-showcase { transform: scale(.8); }
+}
+@media (min-width: 921px) and (max-width: 1040px) {
+  .hero-showcase { transform: scale(.72); }
+}
+
+@media (max-width: 920px) {
+  .hero-copy { width: 100%; padding-top: 0; }
+  .hero h1 { font-size: 48px; }
+  .friction-board, .friction-board.sequence-visual { min-height: 0; }
+  .security-cards article { min-height: 0; }
+  .value-card { min-height: 0; }
+}
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 38px; line-height: 1.12; }
+  .section-copy h2, .section-heading h2 { font-size: 30px; line-height: 1.2; }
+  .faq-block h2, .demo-card h2 { font-size: 32px; }
+  .friction-slide-content p { width: 100%; }
+  .journey-grid article { min-height: 0; }
+  .tabs button, .tabs > span { white-space: normal; }
+  .connector-head h3 { font-size: 16px; }
+  .scene-badge { font-size: 11px; }
+}
+
+@media (max-width: 640px) {
+  .flow-stage { grid-template-columns: minmax(0, 1fr); }
+  .source-grid, .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .source-grid article > span, .people-grid strong { min-width: 0; }
+}
+
+@media (max-width: 420px) {
+  .flow-stage { padding: 16px 12px; }
+  .source-grid { gap: 8px; }
+  .source-grid img { flex-basis: 28px; width: 28px; height: 28px; }
+  .source-grid article, .people-grid article { gap: 6px; padding: 8px 6px; }
+  .source-grid strong, .people-grid strong { font-size: 13px; }
+  .people-grid img { flex-basis: 20px; width: 20px; }
+  .connector-card { left: auto; right: 0; }
+  .hero h1 { font-size: 34px; }
+  .section-copy h2, .section-heading h2 { font-size: 27px; }
+  .faq-block h2, .demo-card h2 { font-size: 29px; }
+}
+
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <main id="main">
+      <section class="hero section" id="top">
+        <div class="hero-orb hero-orb-a"></div>
+        <div class="hero-orb hero-orb-b"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="brand-crop"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-c4fd8.png" alt="WorksHub+" /></div>
+            <h1>Bring LINE&nbsp;WORKS<br /><em>to Every Corner of Your&nbsp;Business</em></h1>
+            <p class="lead">WorksHub+ connects your offices, stores, warehouses and field teams, helping you build an operations hub that keeps running on autopilot.</p>
+            <div class="hero-actions">
+              <a class="button" href="#demo">Book a Product Demo</a>
+            </div>
+          </div>
+
+          <div class="hero-showcase" aria-label="WorksHub+ admin console and LINE WORKS mobile interface">
+            <div class="hero-media-layer hero-web-layer"><img class="hero-admin-image" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-5219c.png" alt="WorksHub+ member management console" /></div>
+            <div class="hero-media-layer hero-phone-layer"><img class="hero-mobile-image" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-2b4ed.png" alt="LINE WORKS mobile messaging screen" /></div>
+            <div class="hero-detail-layer">
+              <div class="showcase-logo brand-crop"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-c4fd8.png" alt="" /></div>
+              <div class="scene-badge scene-office"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-7d145.png" alt="" />Office</div>
+              <div class="scene-badge scene-store"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-6f265.png" alt="" />Store</div>
+              <div class="scene-badge scene-warehouse"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-5c17d.png" alt="" />Warehouse</div>
+              <div class="scene-badge scene-field"><i></i>Field</div>
+              <div class="float-chip float-chat"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-3a741.png" alt="" />Instant reach</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section friction timed-sequence" id="value">
+        <div class="container split-grid">
+          <div class="friction-board sequence-visual">
+            <div class="board-kicker">One office task</div>
+            <h3>4 Entry Points &amp; 4 Breakpoints</h3>
+            <div class="friction-carousel" data-friction-carousel aria-roledescription="carousel" aria-label="Four entry points and four breakpoints">
+              <div class="friction-viewport">
+                <div class="friction-track">
+                  <article class="friction-slide" role="group" aria-roledescription="slide" aria-label="1 / 4">
+                    <span class="breakpoint-tag">Breakpoint 1</span>
+                    <div class="friction-slide-content"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-945f2.png" alt="" draggable="false" /><h4>Scattered Communication</h4><p>Messages are spread across chat apps and email, breaking the flow of information, wasting time on searches and letting key details slip through.</p></div>
+                  </article>
+                  <article class="friction-slide" role="group" aria-roledescription="slide" aria-label="2 / 4">
+                    <span class="breakpoint-tag">Breakpoint 2</span>
+                    <div class="friction-slide-content"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-859e3.png" alt="" draggable="false" /><h4>Messy Approvals</h4><p>Without a unified process, paper and online forms get mixed up, progress is hard to track, and reviews and decisions slow to a crawl.</p></div>
+                  </article>
+                  <article class="friction-slide" role="group" aria-roledescription="slide" aria-label="3 / 4">
+                    <span class="breakpoint-tag">Breakpoint 3</span>
+                    <div class="friction-slide-content"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-cb415.png" alt="" draggable="false" /><h4>Inconsistent Shifts</h4><p>Complex shift patterns and schedules make attendance hard to see in real time, adding friction to timekeeping and management.</p></div>
+                  </article>
+                  <article class="friction-slide" role="group" aria-roledescription="slide" aria-label="4 / 4">
+                    <span class="breakpoint-tag">Breakpoint 4</span>
+                    <div class="friction-slide-content"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-92d85.png" alt="" draggable="false" /><h4>Scattered Assets</h4><p>Incomplete records of devices and software access leave asset flows opaque, raising the risk of maintenance gaps and security handover issues.</p></div>
+                  </article>
+                </div>
+              </div>
+              <div class="friction-dots" aria-label="Choose a breakpoint">
+                <button type="button" data-carousel-dot="0" aria-label="Show breakpoint 1" aria-current="true"></button>
+                <button type="button" data-carousel-dot="1" aria-label="Show breakpoint 2" aria-current="false"></button>
+                <button type="button" data-carousel-dot="2" aria-label="Show breakpoint 3" aria-current="false"></button>
+                <button type="button" data-carousel-dot="3" aria-label="Show breakpoint 4" aria-current="false"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-copy sequence-copy">
+            <div class="eyebrow"><span></span>THE FRICTION</div>
+            <h2>Rich Resources,<br />Disconnected Workflows</h2>
+            <ol class="number-list">
+              <li><span>01</span><div><h3>Processes live in separate systems</h3><p>Notifications, approvals, clock-ins and tasks are spread across different tools.</p></div></li>
+              <li><span>02</span><div><h3>Business assets are fragmented</h3><p>ERP, CRM and other systems run in silos, each with its own entry point.</p></div></li>
+              <li><span>03</span><div><h3>Frontline teams are out of the loop</h3><p>No matter how deeply systems are integrated, notifications only reach the office. Staff in stores, warehouses and the field never see them.</p></div></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section value-section">
+        <div class="container">
+          <div class="section-heading centered reveal">
+            <div class="eyebrow"><span></span>WHY WORKSHUB+</div>
+            <h2>From Managing Every Workplace to Workflows That Run Themselves</h2>
+            <p>Turn scattered data and processes into actions employees can take right away.</p>
+          </div>
+          <div class="value-cards">
+            <article class="value-card motion-card reveal" tabindex="0">
+              <div class="value-top"><span class="card-number">01</span><img class="value-icon" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-0c773.png" alt="" /></div>
+              <h3>Low-Barrier Management</h3>
+              <p>HR and IT can maintain the organization, members and everyday permissions on their own, without waiting on engineering.</p>
+            </article>
+            <article class="value-card motion-card reveal" tabindex="0">
+              <div class="value-top"><span class="card-number">02</span><img class="value-icon" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-001c5.png" alt="" /></div>
+              <h3>Bot-Powered Workflows</h3>
+              <p>Automated settings make it easy for employees to receive and complete their tasks.</p>
+            </article>
+            <article class="value-card motion-card reveal" tabindex="0">
+              <div class="value-top"><span class="card-number">03</span><img class="value-icon" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-ae1e3.png" alt="" /></div>
+              <h3>System Integration</h3>
+              <p>Connect ERP, CRM and HRM to deliver the right data to the right people at the right time.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section how-it-works">
+        <div class="container">
+          <div class="section-heading centered on-dark flow-heading staged-reveal">
+            <div class="eyebrow"><span></span>HOW IT WORKS</div>
+            <h2>In the Office or on the Frontline, Nothing Important Gets Missed</h2>
+            <p>WorksHub+ doesn't replace your existing systems. It brings their data and services into LINE WORKS.</p>
+          </div>
+
+          <div class="flow-stage flow-sequence staged-reveal" aria-label="How WorksHub+ works">
+            <div class="flow-caption flow-caption-source">
+              <strong>01 · What Happens at Work</strong>
+              <span>Every pending task, from the frontline to the office</span>
+            </div>
+            <div class="source-grid">
+              <article class="flow-card" tabindex="0"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-source-inventory.svg" alt="" /><span><strong>Low Stock</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-source-equipment.svg" alt="" /><span><strong>Maintenance</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-source-order.svg" alt="" /><span><strong>Order Issue</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-source-work.svg" alt="" /><span><strong>New Work Order</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-source-leave.svg" alt="" /><span><strong>Leave Request</strong></span></article>
+              <article class="flow-card" tabindex="0"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-source-announcement.svg" alt="" /><span><strong>Company Notice</strong></span></article>
+            </div>
+            <div class="flow-arrow flow-arrow-source" aria-hidden="true"><span></span></div>
+            <div class="flow-caption flow-caption-middle">
+              <strong>02 · WorksHub+</strong>
+              <span>Decides who to notify, automatically</span>
+            </div>
+            <div class="flow-core flow-card" tabindex="0">
+              <img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-edcbf.png" alt="WorksHub+" />
+              <div class="flow-core-rules">
+                <span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-f8e97.svg" alt="" />Stock &lt; 10 | Notify: Field staff</span>
+                <span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-f8e97.svg" alt="" />Approval request | Notify: Manager</span>
+                <span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-f8e97.svg" alt="" />Every trigger is logged</span>
+              </div>
+            </div>
+            <div class="flow-arrow flow-arrow-destination" aria-hidden="true"><span></span></div>
+            <div class="flow-caption flow-caption-destination">
+              <strong>03 · Office or Frontline</strong>
+              <span>Everyone receives and acts in LINE WORKS</span>
+            </div>
+            <div class="people-grid">
+              <article class="flow-card" tabindex="0" aria-label="Store: Warehouse restock needed"><span class="role-message message-blue" aria-hidden="true">Restock needed</span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-person-store.svg" alt="" /><strong>Store</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="Production: Equipment maintenance due"><span class="role-message message-mint" aria-hidden="true">Maintenance due</span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-person-production.svg" alt="" /><strong>Production</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="Sales: New work order sent to engineering"><span class="role-message message-mint" aria-hidden="true">Work order sent</span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-person-sales.svg" alt="" /><strong>Sales</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="Field: Order issue alert!"><span class="role-message message-blue" aria-hidden="true">Order issue alert!</span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-person-field.svg" alt="" /><strong>Field</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="Manager: New leave request received"><span class="role-message message-blue" aria-hidden="true">New leave request</span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-person-manager.svg" alt="" /><strong>Manager</strong></article>
+              <article class="flow-card" tabindex="0" aria-label="HR: Company announcement sent"><span class="role-message message-mint" aria-hidden="true">Announcement sent</span><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/flow-person-hr.svg" alt="" /><strong>HR</strong></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section capabilities" id="capabilities">
+        <div class="container">
+          <div class="section-heading centered reveal">
+            <div class="eyebrow"><span></span>CAPABILITIES</div>
+            <h2>Four Capabilities That Power Your Operations Hub</h2>
+            <p>Operational capabilities for governance, services, integration and insight</p>
+          </div>
+          <div class="capability-grid">
+            <article class="capability-card motion-card reveal" tabindex="0">
+              <div class="cap-head"><span class="cap-icon"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-39eca.svg" alt="" /></span><div><small>GOVERNANCE</small><h3>Organization Governance</h3></div></div>
+              <p>Manage multi-level organizations, member lifecycles and role permissions in one place. Management scopes align with responsibilities automatically, and changes take effect instantly.</p>
+            </article>
+            <article class="capability-card motion-card reveal" tabindex="0">
+              <div class="cap-head"><span class="cap-icon"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-b638e.svg" alt="" /></span><div><small>BOT SERVICES</small><h3>Bot Services</h3></div></div>
+              <p>The Bot Marketplace turns attendance, approvals and internal services into tasks employees complete right in a LINE WORKS Bot, with no separate app to build.</p>
+            </article>
+            <article class="capability-card motion-card reveal" tabindex="0">
+              <div class="cap-head"><span class="cap-icon"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-04f68.svg" alt="" /></span><div><small>INTEGRATION HUB</small><h3>System Integration</h3></div></div>
+              <p>Connect ERP, CRM and HRM through the Connector Marketplace. Data changes and business rules trigger notifications and workflows automatically. Integrate once, reuse everywhere.</p>
+            </article>
+            <article class="capability-card motion-card reveal" tabindex="0">
+              <div class="cap-head"><span class="cap-icon"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-c56f0.svg" alt="" /></span><div><small>INSIGHT &amp; AUDIT</small><h3>Insight &amp; Audit</h3></div></div>
+              <p>See how notifications, messages and menus are used at a glance. Every action records who, when, IP address and what changed, so it can always be traced.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section automation timed-sequence" id="automation">
+        <div class="container split-grid automation-grid">
+          <div class="automation-visual sequence-visual">
+            <img class="automation-phone-shot" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-3d647.png" alt="LINE WORKS enterprise service Bot on mobile" />
+            <div class="connector-card" data-connector-card>
+              <div class="connector-success-alert" data-connector-alert role="status" aria-live="polite" aria-hidden="true">
+                <span class="connector-success-icon" aria-hidden="true">✓</span>
+                <span><strong>Connected</strong><small>ERP connector test completed</small></span>
+              </div>
+              <div class="connector-head">
+                <h3>Connector Settings</h3>
+                <button class="connector-test-button" data-connector-test type="button"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-ceab8.svg" alt="" /><span data-connector-test-label>Test Connection</span></button>
+              </div>
+              <div class="connector-content-stage">
+                <div class="connector-settings" data-connector-settings>
+                  <div class="connector-field"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-f8e97.svg" alt="" />Source system: ERP</div>
+                  <div class="connector-field"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-f8e97.svg" alt="" />Trigger: Order status = Shipped</div>
+                  <div class="connector-field"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-f8e97.svg" alt="" />Recipients: Sales team</div>
+                </div>
+                <div class="connector-loading" data-connector-loading hidden>
+                  <div class="connector-loading-copy">
+                    <i aria-hidden="true"></i>
+                    <span><strong>Testing connection</strong><small>Checking the link between ERP and WorksHub+</small></span>
+                  </div>
+                  <div class="connector-progress" data-connector-progress role="progressbar" aria-label="Connection test progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-connector-progress-bar></i></div>
+                  <div class="connector-progress-meta" aria-hidden="true"><span>Connecting…</span><span data-connector-progress-value>0%</span></div>
+                </div>
+              </div>
+              <div class="connector-status" data-connector-status role="status" aria-live="polite" aria-hidden="true"><i></i>Connection complete</div>
+            </div>
+          </div>
+
+          <div class="section-copy sequence-copy">
+            <div class="eyebrow"><span></span>BOT AUTOMATION</div>
+            <h2>Build an Enterprise Service Portal Without Building an App</h2>
+            <p class="lead compact">The Bot Marketplace delivers ready-to-use business workflows, while the Integration Hub brings your systems into LINE WORKS.</p>
+            <ol class="number-list automation-list">
+              <li><span>01</span><div><div class="list-title"><h3>Bot Marketplace</h3><em>Ready out of the box</em></div><p>Activate attendance, approval and other business Bots with default menus, keywords and notifications ready to go. Admins can adjust content and recipients on their own, no engineering required.</p></div></li>
+              <li><span>02</span><div><div class="list-title"><h3>Integration Hub</h3><em>No-code integration</em></div><p>IT teams can connect ERP, CRM and other systems without code. Set up data, conditions and trigger rules to turn system events into notifications and workflows for the right people.</p></div></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section marketplace" id="marketplace">
+        <div class="container">
+          <div class="section-heading centered reveal">
+            <div class="eyebrow"><span></span>BOT MARKETPLACE</div>
+            <h2>Everyday Business Workflows, Ready in the Bot Marketplace</h2>
+            <p>Activate from the marketplace and go live instantly. Every Bot includes an employee-facing conversation flow plus an admin console for settings and records.</p>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Bot Marketplace">
+            <button type="button" role="tab" aria-selected="true" aria-controls="attendance-panel" id="attendance-tab" data-tab="attendance">Attendance Bot</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="approval-panel" id="approval-tab" data-tab="approval">Approval Bot</button>
+            <span>More Bots coming soon</span>
+          </div>
+
+          <div class="tab-panel active" id="attendance-panel" role="tabpanel" aria-labelledby="attendance-tab">
+            <div class="market-intro"><h3>Clock in and out without switching apps, and manage it all in one place</h3><p>Employees clock in on LINE WORKS. HR manages locations, shifts and exceptions in WorksHub+, with every record saved automatically.</p></div>
+            <div class="journey-grid">
+              <article><div class="journey-shot journey-shot-entry"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-12548.png" alt="LINE WORKS Bot rich menu" /><img class="journey-avatar" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-54479.svg" alt="" /></div><h4><span>01</span>Open the Bot</h4><p>Launch the attendance service from the rich menu</p></article>
+              <div class="journey-arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12H20M13 19L20 12L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <article><div class="journey-shot journey-shot-location"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-be0d0.png" alt="LINE WORKS location check-in screen" /></div><h4><span>02</span>Location Check-in</h4><p>Location and range are verified against company rules</p></article>
+              <div class="journey-arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12H20M13 19L20 12L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <article><div class="journey-shot journey-shot-result"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-1cd46.png" alt="LINE WORKS clock-in result screen" /></div><h4><span>03</span>Instant Feedback</h4><p>Clock-in results arrive instantly, with automatic alerts for exceptions</p></article>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="approval-panel" role="tabpanel" aria-labelledby="approval-tab" hidden>
+            <div class="market-intro"><h3>Requests and approvals, completed right in the conversation</h3><p>Employees submit requests in LINE WORKS and approvers decide with one tap in the chat. Progress, results and history sync to the console automatically.</p></div>
+            <div class="journey-grid">
+              <article><div class="journey-shot approval-shot-application"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-70c0e.png" alt="LINE WORKS approval request screen" /></div><h4><span>01</span>Submit a Request</h4><p>Fill in a form from the menu, with applicant details filled in automatically</p></article>
+              <div class="journey-arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12H20M13 19L20 12L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <article><div class="journey-shot approval-shot-review"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-2665f.png" alt="LINE WORKS manager approval screen" /></div><h4><span>02</span>Manager Approval</h4><p>Requests are pushed to approvers for a one-tap decision in the chat</p></article>
+              <div class="journey-arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12H20M13 19L20 12L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <article><div class="journey-shot approval-shot-result"><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-3da7b.png" alt="LINE WORKS approval result sync screen" /></div><h4><span>03</span>Results Synced</h4><p>Applicants get the result instantly, and records are saved automatically</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section security" id="security">
+        <div class="container">
+          <div class="section-heading centered reveal">
+            <div class="eyebrow"><span></span>ENTERPRISE READY</div>
+            <h2>Accounts, Permissions and Actions, All Under Control</h2>
+            <p>Sign-in, data separation and audit trails, each backed by clear controls</p>
+          </div>
+          <div class="security-cards">
+            <article class="motion-card reveal" tabindex="0"><img class="security-icon" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-86317.svg" alt="" /><h3>LINE WORKS Single Sign-On</h3><p>Sign in with existing LINE WORKS accounts, removing the cost and security risk of maintaining a second set of credentials.</p></article>
+            <article class="motion-card reveal" tabindex="0"><img class="security-icon security-icon-crop" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-136bf.png" alt="" /><h3>Tenant Data Isolation</h3><p>Each company has its own authentication credentials, and a tenant model keeps data boundaries clear and separate.</p></article>
+            <article class="motion-card reveal" tabindex="0"><img class="security-icon security-icon-crop" src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-7cbc1.png" alt="" /><h3>Complete Audit Trail</h3><p>Who acted, when, from which IP and what changed are all recorded for easy tracing and review.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section demo-section" id="demo">
+        <div class="container demo-grid">
+          <div class="faq-block reveal">
+            <div class="eyebrow light"><span></span>FAQ</div>
+            <h2>Before You Get Started</h2>
+            <div class="faq-list">
+              <article class="faq-item open">
+                <button type="button" aria-expanded="true"><span>How is WorksHub+ different from LINE WORKS?</span><i>－</i></button>
+                <div class="faq-answer">LINE WORKS provides communication and collaboration. WorksHub+ builds on top of it with organization governance, a Bot Marketplace, system integration and audit capabilities.</div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>Can we adopt it without an IT team?</span><i>＋</i></button>
+                <div class="faq-answer" hidden>A core goal of WorksHub+ is lowering the technical barrier to building and running Bots. HR, IT or department admins can manage the organization, members, permissions and Bot settings from the console, and use system integration and event triggers to turn data and events from ERP, CRM, HRM and other systems into LINE WORKS Bot notifications and workflows. The actual integration approach is planned around your existing systems and needs.</div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>Can it connect to our existing ERP, CRM or HRM?</span><i>＋</i></button>
+                <div class="faq-answer" hidden>WorksHub+ helps you set up Bot notifications, keyword replies, rich menus, default messages, attendance check-in, internal Q&amp;A, department notices and resource booking alerts, as well as event alerts and data notifications after connecting ERP, CRM, HRM and other systems.<br />The automations you can adopt depend on your existing systems, data sources and work scenarios.</div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>Can we see a demo or request a trial first?</span><i>＋</i></button>
+                <div class="faq-answer" hidden>Tell us how you use LINE WORKS today and which workflows you'd like to improve, and we'll arrange a tailored demo for you.</div>
+              </article>
+            </div>
+          </div>
+
+          <div class="demo-card reveal">
+            <div class="eyebrow"><span></span>BOOK A DEMO</div>
+            <h2>Make Work Not Just Visible, but Done</h2>
+            <p>Tell us how you use LINE WORKS today and which workflows you'd like to improve, and we'll arrange a tailored demo for you.</p>
+            <form id="demo-form">
+              <div class="form-grid">
+                <label for="demo-name"><span class="required-field">Name</span><input id="demo-name" type="text" name="name" autocomplete="name" required /></label>
+                <label for="demo-company"><span class="required-field">Company</span><input id="demo-company" type="text" name="company" autocomplete="organization" required /></label>
+                <label for="demo-role"><span>Job Title / Department</span><input id="demo-role" type="text" name="role" autocomplete="organization-title" /></label>
+                <label for="demo-email"><span class="required-field">Email</span><input id="demo-email" type="email" name="email" autocomplete="email" required /></label>
+                <label for="demo-size"><span>Company Size</span><select id="demo-size" name="size" autocomplete="off"><option value=""></option><option value="1–50">1–50</option><option value="51–200">51–200</option><option value="201–500">201–500</option><option value="501 以上">501+</option></select></label>
+                <label for="demo-interest"><span>Features of Interest</span><select id="demo-interest" name="interest" autocomplete="off"><option value=""></option><option value="組織治理">Organization Governance</option><option value="Bot 應用服務">Bot Services</option><option value="系統整合">System Integration</option><option value="洞察與稽核">Insight &amp; Audit</option></select></label>
+              </div>
+              <label class="full-field" for="demo-message"><span>Tell Us About Your Needs</span><textarea id="demo-message" name="message" rows="4" autocomplete="off"></textarea></label>
+              <button class="button form-submit" type="submit">Book a WorksHub+ Demo</button>
+              <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand"><strong>Cool<span>Be</span></strong><i></i><img src="https://jessicahuang-star.github.io/workshub-plus-site/assets/figma-c4fd8.png" alt="WorksHub+" /></div>
+        <span>Organization Governance · Bot Marketplace · Integration Hub</span>
+        <span>© 2026 CoolBe</span>
+      </div>
+    </footer>
+
+    <script>
+(() => {
+  // Hide the inner scrollbar in Wix embeds while preserving scrolling.
+  if (window.self !== window.top) {
+    document.documentElement.classList.add('embedded-page');
+  }
+  document.documentElement.classList.add('motion-enabled');
+  const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const menuButton = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  if (menuButton && mobileNav) {
+    const closeMenu = () => {
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open navigation');
+      mobileNav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    };
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+      mobileNav.classList.toggle('open', !isOpen);
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 920) closeMenu();
+    });
+  }
+
+  const heroShowcase = document.querySelector('.hero-showcase');
+  if (heroShowcase) {
+    const heroSection = heroShowcase.closest('.hero');
+    let heroInView = true;
+    let parallaxFrame = 0;
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => heroShowcase.classList.add('is-visible'));
+    });
+
+    const updateHeroParallax = () => {
+      parallaxFrame = 0;
+      if (reducedMotionMedia.matches || !heroInView || !heroSection) return;
+      const traveled = Math.min(Math.max(-heroSection.getBoundingClientRect().top, 0), heroSection.offsetHeight);
+      const phoneFloat = Math.sin(traveled / 75) * 6;
+      heroShowcase.style.setProperty('--hero-parallax-web', `${(traveled * .03).toFixed(2)}px`);
+      heroShowcase.style.setProperty('--hero-parallax-phone', `${((traveled * .055) + phoneFloat).toFixed(2)}px`);
+      heroShowcase.style.setProperty('--hero-parallax-detail', `${(traveled * .04).toFixed(2)}px`);
+    };
+
+    const queueHeroParallax = () => {
+      if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateHeroParallax);
+    };
+
+    if (!reducedMotionMedia.matches) {
+      window.addEventListener('scroll', queueHeroParallax, { passive: true });
+      window.addEventListener('resize', queueHeroParallax);
+      if ('IntersectionObserver' in window && heroSection) {
+        const heroObserver = new IntersectionObserver(([entry]) => {
+          heroInView = entry.isIntersecting;
+          heroShowcase.classList.toggle('parallax-active', heroInView);
+          if (heroInView) queueHeroParallax();
+        });
+        heroObserver.observe(heroSection);
+      } else {
+        heroShowcase.classList.add('parallax-active');
+      }
+      queueHeroParallax();
+    }
+  }
+
+  const frictionCarousel = document.querySelector('[data-friction-carousel]');
+  if (frictionCarousel) {
+    const viewport = frictionCarousel.querySelector('.friction-viewport');
+    const track = frictionCarousel.querySelector('.friction-track');
+    const slides = Array.from(frictionCarousel.querySelectorAll('.friction-slide'));
+    const dots = Array.from(frictionCarousel.querySelectorAll('[data-carousel-dot]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+    let position = 1;
+    let startX = 0;
+    let dragX = 0;
+    let dragging = false;
+    let inView = false;
+    let timer;
+
+    firstClone.setAttribute('aria-hidden', 'true');
+    lastClone.setAttribute('aria-hidden', 'true');
+    firstClone.inert = true;
+    lastClone.inert = true;
+    track.prepend(lastClone);
+    track.append(firstClone);
+
+    const currentIndex = () => (position - 1 + slides.length) % slides.length;
+    const setTransform = (animate = true, offset = 0) => {
+      track.style.transition = animate && !reduceMotion ? '' : 'none';
+      track.style.transform = `translate3d(calc(${-position * 100}% + ${offset}px), 0, 0)`;
+    };
+    const syncState = () => {
+      const activeIndex = currentIndex();
+      dots.forEach((dot, index) => dot.setAttribute('aria-current', String(index === activeIndex)));
+      slides.forEach((slide, index) => slide.setAttribute('aria-hidden', String(index !== activeIndex)));
+    };
+    const clearTimer = () => window.clearTimeout(timer);
+    const schedule = () => {
+      clearTimer();
+      if (!reduceMotion && inView && !dragging && !document.hidden) {
+        timer = window.setTimeout(() => {
+          position += 1;
+          setTransform(true);
+          syncState();
+          schedule();
+        }, 3000);
+      }
+    };
+    const finishDrag = (event) => {
+      if (!dragging) return;
+      dragging = false;
+      frictionCarousel.classList.remove('is-dragging');
+      const threshold = Math.min(80, viewport.clientWidth * .16);
+      if (dragX <= -threshold) position += 1;
+      if (dragX >= threshold) position -= 1;
+      dragX = 0;
+      setTransform(true);
+      syncState();
+      if (event.pointerId !== undefined && viewport.hasPointerCapture?.(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+      schedule();
+    };
+
+    setTransform(false);
+    syncState();
+
+    viewport.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      dragging = true;
+      startX = event.clientX;
+      dragX = 0;
+      clearTimer();
+      frictionCarousel.classList.add('is-dragging');
+      try {
+        viewport.setPointerCapture?.(event.pointerId);
+      } catch {
+        // 部分自動化或舊版瀏覽器不提供有效的 pointer capture，拖曳本身仍可正常進行。
+      }
+      setTransform(false);
+    });
+    viewport.addEventListener('pointermove', (event) => {
+      if (!dragging) return;
+      dragX = event.clientX - startX;
+      setTransform(false, dragX);
+    });
+    viewport.addEventListener('pointerup', finishDrag);
+    viewport.addEventListener('pointercancel', finishDrag);
+    viewport.addEventListener('dragstart', (event) => event.preventDefault());
+
+    track.addEventListener('transitionend', () => {
+      if (position === 0) {
+        position = slides.length;
+        setTransform(false);
+      } else if (position === slides.length + 1) {
+        position = 1;
+        setTransform(false);
+      }
+      syncState();
+    });
+
+    dots.forEach((dot) => dot.addEventListener('click', () => {
+      position = Number(dot.dataset.carouselDot) + 1;
+      setTransform(true);
+      syncState();
+      schedule();
+    }));
+
+    document.addEventListener('visibilitychange', schedule);
+
+    if ('IntersectionObserver' in window) {
+      const carouselObserver = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting && entry.intersectionRatio >= .45;
+        schedule();
+      }, { threshold: [.45] });
+      carouselObserver.observe(frictionCarousel);
+    } else {
+      inView = true;
+      schedule();
+    }
+  }
+
+  const marketplace = document.querySelector('.marketplace');
+  const journeyPanels = Array.from(document.querySelectorAll('.marketplace [role="tabpanel"]'));
+  let marketplaceInView = false;
+
+  journeyPanels.forEach((panel) => {
+    panel.querySelectorAll('.journey-grid > *').forEach((step, index) => {
+      step.classList.add('journey-step');
+      step.style.setProperty('--journey-delay', `${index * 180}ms`);
+    });
+  });
+
+  const animateJourney = (panel) => {
+    if (!panel) return;
+    if (reducedMotionMedia.matches) {
+      panel.classList.add('journey-visible');
+      return;
+    }
+    panel.classList.remove('journey-visible');
+    void panel.offsetWidth;
+    window.requestAnimationFrame(() => panel.classList.add('journey-visible'));
+  };
+
+  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+  const defaultTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0];
+  if (defaultTab) {
+    tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab === defaultTab)));
+    document.querySelectorAll('[role="tabpanel"]').forEach((panel) => {
+      const isDefault = panel.id === defaultTab.getAttribute('aria-controls');
+      panel.hidden = !isDefault;
+      panel.classList.toggle('active', isDefault);
+    });
+  }
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+
+      document.querySelectorAll('[role="tabpanel"]').forEach((panel) => {
+        const activePanelId = tab.getAttribute('aria-controls');
+        const isActive = panel.id === activePanelId;
+        panel.hidden = !isActive;
+        panel.classList.toggle('active', isActive);
+        if (isActive && marketplaceInView) animateJourney(panel);
+      });
+    });
+
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const currentIndex = tabs.indexOf(tab);
+      const direction = event.key === 'ArrowRight' ? 1 : -1;
+      const nextTab = tabs[(currentIndex + direction + tabs.length) % tabs.length];
+      nextTab.focus();
+      nextTab.click();
+    });
+  });
+
+  if (marketplace) {
+    const showActiveJourney = () => {
+      marketplaceInView = true;
+      animateJourney(marketplace.querySelector('.tab-panel.active'));
+    };
+    if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
+      const marketplaceObserver = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        showActiveJourney();
+        marketplaceObserver.unobserve(marketplace);
+      }, { threshold: .16 });
+      marketplaceObserver.observe(marketplace);
+    } else {
+      showActiveJourney();
+    }
+  }
+
+  document.querySelectorAll('.faq-item button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!isOpen));
+      button.querySelector('i').textContent = isOpen ? '＋' : '－';
+      answer.hidden = isOpen;
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+
+   const demoForm = document.querySelector('#demo-form');
+  const formStatus = document.querySelector('#form-status');
+
+  if (demoForm && formStatus) {
+    const wixOrigin = 'https://www.coolbe.com.tw';
+    const submitButton = demoForm.querySelector('[type="submit"]');
+    const originalLabel = submitButton.textContent;
+    const sizeMap = {
+      '1–50': '1 - 50',
+      '51–200': '51 - 200',
+      '201–500': '201 - 500',
+      '501 以上': '501以上'
+    };
+
+    let pendingId = null;
+    let timeoutId;
+
+    function finish(text, success) {
+      window.clearTimeout(timeoutId);
+      pendingId = null;
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+      formStatus.textContent = text;
+      if (success) demoForm.reset();
+    }
+
+    window.addEventListener('message', (event) => {
+      if (event.source !== window.parent ||
+          event.origin !== wixOrigin) return;
+
+      const result = event.data;
+      if (!result ||
+          result.type !== 'WORKSHUB_DEMO_RESULT' ||
+          !pendingId ||
+          result.requestId !== pendingId) return;
+
+      finish(
+        result.success === true
+          ? 'Your demo request has been sent. We\'ll be in touch soon.'
+          : 'Submission failed. Please try again later.',
+        result.success === true
+      );
+    });
+
+    demoForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (pendingId || !demoForm.reportValidity()) return;
+
+      if (window.parent === window) {
+        formStatus.textContent = 'Please complete your booking on the CoolBe website.';
+        const link = document.createElement('a');
+        link.href =
+          'https://www.coolbe.com.tw/solution/digital-transformation/#demo';
+        link.textContent = 'Go to booking page';
+        formStatus.append(' ', link);
+        return;
+      }
+
+      const values = new FormData(demoForm);
+      const size = String(values.get('size') || '');
+      const interest = String(values.get('interest') || '');
+
+      pendingId = window.crypto.randomUUID();
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+      formStatus.textContent = 'Sending, please wait.';
+
+      timeoutId = window.setTimeout(() => {
+        finish(
+          'We haven\'t received a confirmation yet. Please contact us to check before submitting again.',
+          false
+        );
+      }, 30000);
+
+      window.parent.postMessage({
+        type: 'WORKSHUB_DEMO_SUBMIT',
+        requestId: pendingId,
+        data: {
+          name: String(values.get('name') || ''),
+          company: String(values.get('company') || ''),
+          jobTitle: String(values.get('role') || ''),
+          email: String(values.get('email') || ''),
+          companySize: sizeMap[size] || size,
+          feature: interest === 'Bot 應用服務'
+            ? 'Bot應用服務'
+            : interest,
+          message: String(values.get('message') || '')
+        }
+      }, wixOrigin);
+    });
+  }
+
+  const connectorInteractiveCard = document.querySelector('[data-connector-card]');
+  if (connectorInteractiveCard) {
+    const testButton = connectorInteractiveCard.querySelector('[data-connector-test]');
+    const testButtonLabel = connectorInteractiveCard.querySelector('[data-connector-test-label]');
+    const settings = connectorInteractiveCard.querySelector('[data-connector-settings]');
+    const loading = connectorInteractiveCard.querySelector('[data-connector-loading]');
+    const progress = connectorInteractiveCard.querySelector('[data-connector-progress]');
+    const progressBar = connectorInteractiveCard.querySelector('[data-connector-progress-bar]');
+    const progressValue = connectorInteractiveCard.querySelector('[data-connector-progress-value]');
+    const status = connectorInteractiveCard.querySelector('[data-connector-status]');
+    const successAlert = connectorInteractiveCard.querySelector('[data-connector-alert]');
+    let connectorRunning = false;
+    let connectorFrame = 0;
+    let connectorAlertTimer = 0;
+
+    const updateConnectorProgress = (value) => {
+      const rounded = Math.max(0, Math.min(100, Math.round(value)));
+      progressBar.style.width = `${rounded}%`;
+      progress.setAttribute('aria-valuenow', String(rounded));
+      progressValue.textContent = `${rounded}%`;
+    };
+
+    const showConnectorAlert = () => {
+      window.clearTimeout(connectorAlertTimer);
+      successAlert.setAttribute('aria-hidden', 'false');
+      successAlert.classList.add('is-visible');
+      connectorAlertTimer = window.setTimeout(() => {
+        successAlert.classList.remove('is-visible');
+        successAlert.setAttribute('aria-hidden', 'true');
+      }, 2000);
+    };
+
+    const finishConnectorTest = () => {
+      updateConnectorProgress(100);
+      loading.hidden = true;
+      settings.hidden = false;
+      status.setAttribute('aria-hidden', 'false');
+      status.classList.add('is-visible');
+      testButton.disabled = false;
+      testButtonLabel.textContent = 'Test Again';
+      connectorRunning = false;
+      showConnectorAlert();
+    };
+
+    const runConnectorProgress = () => {
+      const duration = reducedMotionMedia.matches ? 450 : 1800;
+      const startedAt = performance.now();
+      const tick = (time) => {
+        const elapsed = time - startedAt;
+        const ratio = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - ratio, 3);
+        updateConnectorProgress(eased * 100);
+        if (ratio < 1) connectorFrame = window.requestAnimationFrame(tick);
+        else finishConnectorTest();
+      };
+      connectorFrame = window.requestAnimationFrame(tick);
+    };
+
+    testButton.addEventListener('click', () => {
+      if (connectorRunning) return;
+      connectorRunning = true;
+      window.cancelAnimationFrame(connectorFrame);
+      window.clearTimeout(connectorAlertTimer);
+      successAlert.classList.remove('is-visible');
+      successAlert.setAttribute('aria-hidden', 'true');
+      status.classList.remove('is-visible');
+      status.setAttribute('aria-hidden', 'true');
+      settings.hidden = true;
+      loading.hidden = false;
+      testButton.disabled = true;
+      testButtonLabel.textContent = 'Connecting';
+      updateConnectorProgress(0);
+      runConnectorProgress();
+    });
+  }
+
+  const timedSequenceInterval = 600;
+  const timedSequenceDefinitions = [
+    {
+      section: document.querySelector('.friction.timed-sequence'),
+      textSelector: '.sequence-copy > .eyebrow, .sequence-copy > h2, .sequence-copy > .number-list > li',
+      visualSelectors: ['.friction-board']
+    },
+    {
+      section: document.querySelector('.automation.timed-sequence'),
+      textSelector: '.sequence-copy > .eyebrow, .sequence-copy > h2, .sequence-copy > .lead, .sequence-copy > .number-list > li',
+      visualSelectors: ['.automation-phone-shot', '.connector-card']
+    }
+  ];
+
+  const timedSequences = timedSequenceDefinitions.flatMap(({ section, textSelector, visualSelectors }) => {
+    if (!section) return [];
+    const textItems = Array.from(section.querySelectorAll(textSelector));
+    textItems.forEach((item, index) => {
+      item.classList.add('sequence-item');
+      item.style.setProperty('--sequence-delay', `${index * timedSequenceInterval}ms`);
+    });
+    const visualItems = visualSelectors.map((selector) => section.querySelector(selector)).filter(Boolean);
+    visualItems.forEach((item, index) => {
+      item.classList.add('sequence-item');
+      item.style.setProperty('--sequence-delay', `${(textItems.length + index) * timedSequenceInterval}ms`);
+    });
+    return [{ section, duration: (textItems.length + visualItems.length) * timedSequenceInterval }];
+  });
+
+  const activateTimedSequence = ({ section, duration }) => {
+    section.classList.add('sequence-visible');
+    window.setTimeout(() => section.classList.add('sequence-complete'), reducedMotionMedia.matches ? 0 : duration + 900);
+  };
+
+  if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
+    const timedObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const sequence = timedSequences.find((item) => item.section === entry.target);
+        if (sequence) activateTimedSequence(sequence);
+        timedObserver.unobserve(entry.target);
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -4%' });
+    timedSequences.forEach(({ section }) => timedObserver.observe(section));
+  } else {
+    timedSequences.forEach(activateTimedSequence);
+  }
+
+  const automationSection = document.querySelector('.automation');
+  const connectorCard = automationSection?.querySelector('.connector-card');
+  if (automationSection && connectorCard && !reducedMotionMedia.matches) {
+    let automationInView = false;
+    let automationFrame = 0;
+    const updateConnectorParallax = () => {
+      automationFrame = 0;
+      if (!automationInView) return;
+      const rect = automationSection.getBoundingClientRect();
+      const distanceFromCenter = (window.innerHeight * .5) - (rect.top + rect.height * .5);
+      const offset = Math.max(-28, Math.min(28, distanceFromCenter * .055));
+      connectorCard.style.setProperty('--connector-parallax', `${offset.toFixed(2)}px`);
+    };
+    const queueConnectorParallax = () => {
+      if (!automationFrame) automationFrame = window.requestAnimationFrame(updateConnectorParallax);
+    };
+    const automationObserver = new IntersectionObserver(([entry]) => {
+      automationInView = entry.isIntersecting;
+      automationSection.classList.toggle('parallax-active', automationInView);
+      if (automationInView) queueConnectorParallax();
+    });
+    automationObserver.observe(automationSection);
+    window.addEventListener('scroll', queueConnectorParallax, { passive: true });
+    window.addEventListener('resize', queueConnectorParallax);
+  }
+
+  const revealItems = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+    revealItems.forEach((item) => observer.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('visible'));
+  }
+
+  const flowSequence = document.querySelector('.flow-sequence');
+  if (flowSequence) {
+    const flowSteps = flowSequence.querySelectorAll('.flow-caption, .source-grid article, .flow-arrow, .flow-core, .people-grid article');
+    flowSteps.forEach((step, index) => {
+      step.classList.add('flow-step');
+      step.style.setProperty('--flow-delay', `${index * 55}ms`);
+    });
+  }
+
+  const roleCards = Array.from(document.querySelectorAll('.people-grid article'));
+  const setRoleMessageState = (card, open) => {
+    card.classList.toggle('message-open', open);
+    card.setAttribute('aria-expanded', String(open));
+    card.querySelector('.role-message')?.setAttribute('aria-hidden', String(!open));
+  };
+  const closeRoleMessages = (except) => {
+    roleCards.forEach((card) => {
+      if (card !== except) setRoleMessageState(card, false);
+    });
+  };
+
+  roleCards.forEach((card) => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
+    card.addEventListener('click', () => {
+      const shouldOpen = !card.classList.contains('message-open');
+      closeRoleMessages(card);
+      setRoleMessageState(card, shouldOpen);
+    });
+    card.addEventListener('keydown', (event) => {
+      if (!['Enter', ' '].includes(event.key)) return;
+      event.preventDefault();
+      card.click();
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.people-grid article')) closeRoleMessages();
+  });
+
+  const stagedRevealItems = document.querySelectorAll('.staged-reveal');
+  if ('IntersectionObserver' in window && !reducedMotionMedia.matches) {
+    const stagedObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('visible', entry.isIntersecting && entry.intersectionRatio >= .08);
+      });
+    }, { threshold: [0, .08], rootMargin: '-4% 0px -4%' });
+    stagedRevealItems.forEach((item) => stagedObserver.observe(item));
+  } else {
+    stagedRevealItems.forEach((item) => item.classList.add('visible'));
+  }
+
+  // 嵌入 Wix 時，通知外層頁面捲到預約表單
+  document.addEventListener('click', (event) => {
+    const link = event.target instanceof Element
+      ? event.target.closest('a[href="#demo"]')
+      : null;
+    if (!link || window.parent === window) return;
+    event.preventDefault();
+    window.parent.postMessage(
+      { type: 'WORKSHUB_SCROLL_TO_DEMO' },
+      'https://www.coolbe.com.tw'
+    );
+  });
+})();
+
+    </script>
+  </body>
+</html>
