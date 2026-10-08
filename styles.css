@@ -1037,3 +1037,12 @@ h1, h2, h3, h4 { line-height: 1.22; }
     box-shadow: none;
   }
 }
+
+/* Center the connector card on narrow mobile screens. */
+@media (width < 600px) {
+  .connector-card {
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+  }
+}
