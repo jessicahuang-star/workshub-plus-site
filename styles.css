@@ -1074,3 +1074,16 @@ h1, h2, h3, h4 { line-height: 1.22; }
   .marketplace .tabs button { min-width: 0; padding-inline: 8px; white-space: nowrap; }
   .marketplace .tabs > span { grid-column: 1 / -1; }
 }
+html.embedded-page,
+    html.embedded-page body {
+      overflow: hidden;
+      scroll-behavior: auto;
+    }
+    html.embedded-page body {
+      min-height: 100vh;         
+      display: flex;
+      flex-direction: column;
+    }
+    html.embedded-page .site-footer {   
+      margin-top: auto;           
+    }
