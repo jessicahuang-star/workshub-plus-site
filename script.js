@@ -94,6 +94,10 @@
     track.prepend(lastClone);
     track.append(firstClone);
 
+    // Interrupted transitions must not leave the carousel on a boundary clone.
+    const normalizePosition = () => {
+      position = ((position - 1) % slides.length + slides.length) % slides.length + 1;
+    };
     const currentIndex = () => (position - 1 + slides.length) % slides.length;
     const setTransform = (animate = true, offset = 0) => {
       track.style.transition = animate && !reduceMotion ? '' : 'none';
@@ -109,6 +113,7 @@
       clearTimer();
       if (!reduceMotion && inView && !dragging && !document.hidden) {
         timer = window.setTimeout(() => {
+          normalizePosition();
           position += 1;
           setTransform(true);
           syncState();
@@ -121,8 +126,8 @@
       dragging = false;
       frictionCarousel.classList.remove('is-dragging');
       const threshold = Math.min(80, viewport.clientWidth * .16);
-      if (dragX <= -threshold) position += 1;
-      if (dragX >= threshold) position -= 1;
+      if (event.type !== 'pointercancel' && dragX <= -threshold) position += 1;
+      if (event.type !== 'pointercancel' && dragX >= threshold) position -= 1;
       dragX = 0;
       setTransform(true);
       syncState();
@@ -134,7 +139,9 @@
     syncState();
 
     viewport.addEventListener('pointerdown', (event) => {
+      if (dragging || event.isPrimary === false) return;
       if (event.pointerType === 'mouse' && event.button !== 0) return;
+      normalizePosition();
       dragging = true;
       startX = event.clientX;
       dragX = 0;
@@ -149,14 +156,15 @@
     });
     viewport.addEventListener('pointermove', (event) => {
       if (!dragging) return;
-      dragX = event.clientX - startX;
+      dragX = Math.max(-viewport.clientWidth, Math.min(viewport.clientWidth, event.clientX - startX));
       setTransform(false, dragX);
     });
     viewport.addEventListener('pointerup', finishDrag);
     viewport.addEventListener('pointercancel', finishDrag);
     viewport.addEventListener('dragstart', (event) => event.preventDefault());
 
-    track.addEventListener('transitionend', () => {
+    track.addEventListener('transitionend', (event) => {
+      if (event.target !== track || event.propertyName !== 'transform' || dragging) return;
       if (position === 0) {
         position = slides.length;
         setTransform(false);

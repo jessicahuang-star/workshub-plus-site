@@ -1065,3 +1065,12 @@ h1, h2, h3, h4 { line-height: 1.22; }
 @media (width < 600px) {
   .site-footer { display: none; }
 }
+
+/* Narrow mobile hero and Bot tab layout. */
+@media (width < 600px) {
+  .hero-showcase .scene-badge,
+  .hero-showcase .showcase-logo { display: none; }
+  .marketplace .tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .marketplace .tabs button { min-width: 0; padding-inline: 8px; white-space: nowrap; }
+  .marketplace .tabs > span { grid-column: 1 / -1; }
+}
