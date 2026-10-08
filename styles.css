@@ -990,3 +990,39 @@ h1, h2, h3, h4 { line-height: 1.22; }
   .automation-phone-shot { top: -28px; left: 7px; width: 357px; }
   .connector-card { zoom: .79; top: 333px; right: auto; left: 143px; }
 }
+
+/* Responsive card contents: allow grid/flex items to shrink and text to wrap. */
+.value-card, .capability-card, .security-cards article, .journey-grid article,
+.flow-stage > *, .source-grid article, .people-grid article, .flow-core-rules,
+.cap-head > *, .connector-head > *, .form-grid > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.source-grid, .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.flow-caption strong { line-height: 1.4; }
+.flow-caption span, .flow-core-rules span { white-space: normal; overflow-wrap: anywhere; }
+.flow-core { max-width: 100%; }
+.source-grid article, .people-grid article { flex-wrap: wrap; }
+.cap-icon, .connector-field img { flex-shrink: 0; }
+.cap-head, .connector-head, .connector-field { flex-wrap: wrap; }
+.role-message { min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; line-height: 1.4; left: 0; }
+
+@media (min-width: 641px) and (max-width: 920px) {
+  .source-grid, .people-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 920px) {
+  .flow-stage { grid-template-columns: minmax(0, 1fr); }
+  .flow-core { width: min(280px, 100%); }
+  .value-card, .security-cards article, .journey-grid article { height: auto; }
+}
+@media (max-width: 640px) {
+  .how-it-works .mobile-break { display: none; }
+  .section-heading, .section-copy { min-width: 0; overflow-wrap: anywhere; }
+  .flow-stage { padding: 20px; }
+  .flow-core > img { max-width: 100%; }
+  .flow-core-rules span { padding-inline: 8px; }
+  .cap-head, .connector-head { row-gap: 12px; }
+  .material-tag { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+  .automation-phone-shot { left: 0; width: min(357px, 100%); }
+  .connector-card { left: auto; right: 0; width: min(270px, 100%); max-width: 100%; }
+}
