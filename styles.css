@@ -1046,3 +1046,9 @@ h1, h2, h3, h4 { line-height: 1.22; }
     margin-inline: auto;
   }
 }
+
+/* Flow cards grow with wrapped descriptions and retain 24px vertical padding. */
+.journey-grid article {
+  height: auto;
+  padding-block: 24px;
+}
