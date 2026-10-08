@@ -1026,3 +1026,14 @@ h1, h2, h3, h4 { line-height: 1.22; }
   .automation-phone-shot { left: 0; width: min(357px, 100%); }
   .connector-card { left: auto; right: 0; width: min(270px, 100%); max-width: 100%; }
 }
+
+/* Hide the decorative flow panel below 600px; keep all flow content visible. */
+@media (width < 600px) {
+  .flow-stage {
+    padding-inline: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+}
