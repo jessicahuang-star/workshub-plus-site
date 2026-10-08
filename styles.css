@@ -1052,3 +1052,11 @@ h1, h2, h3, h4 { line-height: 1.22; }
   height: auto;
   padding-block: 24px;
 }
+
+/* Let these section descriptions wrap naturally below 600px. */
+@media (width < 600px) {
+  .capabilities .section-heading > p br,
+  .automation .section-copy > p.lead br {
+    display: none;
+  }
+}
